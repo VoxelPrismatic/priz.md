@@ -1,7 +1,7 @@
 var base__ = "https://voxelprismatic.github.io/priz.md/out/";
 var head__ = document.getElementById("priz_importer");
 var meta__ = document.getElementById("priz_syntax");
-if(iframe_md__ && !meta) {
+if(iframe_md__ && !meta__) {
     var script__ = document.createElement("iframe");
     script__.src = base__.slice(0, -4);
     script__.id = "prizmd";
