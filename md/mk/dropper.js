@@ -1,4 +1,4 @@
-function mk_dropper(st) {
+function mk_dropper__(st) {
     var str = "";
     var id = st.split("\n")[0].slice(3, -3);
     var heading = mk_head(id, id.split(" ").slice(1).join(" "), false);

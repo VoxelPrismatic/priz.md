@@ -7,4 +7,7 @@
 .str {color:#00ffff;}
 .dec {color:#0088ff;}
 .comm {color:#777777;}
-.err {color:#ff0000;font-style:italic;font-weight:bold;} 
+.err {color:#ff0000;font-style:italic;font-weight:bold;}
+.comm * {color:#777777;}
+.str * {color:#00ffff;}
+.str .op {color:#ffff00;}

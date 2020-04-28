@@ -45,16 +45,32 @@ if(meta__) {
     css__.type = "text/css";
     css__.href = base__ + "syntax.min.css";
     head__.after(css__);
-    for(var thing of meta__.content.split(";")) {
-        var script__ = document.createElement("script");
-        script__.src = base__ + thing + ".min.js";
-        script__.type = "text/javascript";
-        head__.after(script__);
+    var ct__ = meta__.content;
+    if(ct__.includes("html")) {
+        if(!ct__.includes("js")) {
+            ct__ += ",js";
+        }
+        if(!ct__.includes("css")) {
+            ct__ += ",css";
+        }
     }
+    meta__.content = "index," + ct__ + ",base";
+    var scripts__ = [];
+    for(var thing of meta__.content.split(",")) {
+        if(thing) {
+            var script__ = document.createElement("script");
+            script__.id = thing + ".min.js";
+            script__.onload = function() {head__.after(scripts__.pop())};
+            script__.onerror = script__.onload;
+            script__.src = base__ + "lang/" + thing + "-lang.min.js";
+            script__.type = "text/javascript";
+            scripts__.push(script__);
+        }
+    }
+    head__.after(scripts__.pop())
 }
 delete css__;
 delete script__;
 delete base__;
-delete head__;
 delete iframe_md__;
 delete lite_css__;

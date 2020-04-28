@@ -1,24 +1,19 @@
-var cls = [
-    "int", "float", "dict", "list",
-    "tuple", "set", "bool", "None",
-    "frozenset", "str", "bytes",
-    "file", "type", "complex", "True",
-    "range", "bytearray", "memoryview",
-    "False", "range"
+var py_cls__ = [
+    "int", "float", "dict", "list", "tuple", "set", "bool", "None", "frozenset",
+    "str", "bytes", "file", "type", "complex", "True", "range", "bytearray",
+    "memoryview", "False", "range", "breakpoint", "callable", "classmethod",
+    "map", "object", "quit"
 ];
 
-var kw = [
-    "import", "from", "yield", "break", 
-    "if", "assert",  "finally", "def",
-    "elif", "else", "for", "while", "id",
-    "with", "as", "in", "not", "and", 
-    "or", "is", "super", "self", "global",
-    "local", "try", "except", "pass",
-    "continue", "break", "return",
-    "del", "nonlocal", "lambda"
+var py_kw__ = [
+    "import", "from", "yield", "break",  "if", "assert",  "finally", "def",
+    "elif", "else", "for", "while", "id", "with", "as", "in", "not", "and",
+    "or", "is", "super", "self", "global", "local", "try", "except", "pass",
+    "continue", "break", "return", "del", "nonlocal", "lambda", "issubclass",
+    "isinstance", "next"
 ];
 
-function py_str_regex(m, a, b, c) {
+function py_str_regex__(m, a, b, c) {
     var st = "";
     if(a == "f" || a == "F") {
         var incode = false;
@@ -33,7 +28,7 @@ function py_str_regex(m, a, b, c) {
                 st += d;
             } else {
                 st += d+"\u200b";
-            } 
+            }
         }
     } else {
         st = c.split('').join("\u200b");
@@ -41,36 +36,29 @@ function py_str_regex(m, a, b, c) {
     return `<span class="str">${a}${b}${st}${b}</span>`;
 }
 
-var py_regex = [
+var py_regex__ = [
     [
-        /([fFrRuUbB]?)(")(.*?)"/gm,
-        py_str_regex
+        /([fFrRuUbB]?)(")(.*?[^\\]|)"/gm,
+        py_str_regex__
     ], [
-        /([fFrRuUbB]?)(')(.*?)'/gm,
-        py_str_regex
+        /([fFrRuUbB]?)(')(.*?[^\\]|)'/gm,
+        py_str_regex__
     ], [
-        /([fFrRuUbB]?)(''')((.|\n)*)'''/gm,
-        py_str_regex
+        /([fFrRuUbB]?)(''')((.|\n)*[^\\]|)'''/gm,
+        py_str_regex__
     ], [
-        /([fFrRuUbB]?)(""")((.|\n)*)"""/gm,
-        py_str_regex
-    ], [
-        /\\u([A-Fa-f0-9\u200b]{8})/gm, 
-        `<span class="op">\\u$1</span>`
-    ], [
-        /\\U([A-Fa-f0-9\u200b]{16})/gm, 
+        /([fFrRuUbB]?)(""")((.|\n)*[^\\]|)"""/gm,
+        py_str_regex__
+    ],
+    ...std_escape__,
+    [
+        /\\U([A-Fa-f0-9\u200b]{8,16})/gm,
         `<span class="op">\\U$1</span>`
     ], [
-        /\\x([A-Fa-f0-9\u200b]{4})/gm, 
-        `<span class="op">\\x$1</span>`
-    ], [
-        /\\N\{([\w\d ]+)\}/gm, 
+        /\\N\{([\w\d ]+)\}/gm,
         `<span class="op">\\N{$1}</span..,>`
     ], [
-        /\\(.)/gm, 
-        `<span class="op">\\$1</span>`
-    ], [
-        /^([\u200b ]*)def ([\w\d_]+)/gm, 
+        /^([\u200b ]*)def ([\w\d_]+)/gm,
         `$1<span class="kw">def</span> <span class="fn">$2</span>`
     ], [
         /__([\w\d_]+)__/gm,
@@ -78,99 +66,42 @@ var py_regex = [
     ], [
         /^([\u200b ]*)class ([\w\d_]+)/gm,
         function(m, a, b) {
-            cls.push(b);
+            py_cls.push(b);
             return `${a}<span class="kw">class</span> <span class="cls">${b}</span>`;
         }
     ], [
         /([\w\d_]+)([\(\[.])/gm,
         `<span class="fn">$1</span>$2`
     ], [
-        /([^\u200b])\#(.*)$/gm,
+        /([^\u200b])\#(.*)\n/gm,
         function(m, b, a) {
-            return `${b}<span class="comm">#${a.split('').join('\u200b')}</span>`;
+            return `${b}<span class="comm">#${a.split('').join('\u200b')}</span>\n`;
         }
     ], [
-        /^\#(.*)$/gm,
+        /^\#(.*)\n/gm,
         function(m, a) {
-            return `<span class="comm">#${a.split('').join('\u200b')}</span>`;
+            return `<span class="comm">#${a.split('').join('\u200b')}</span>\n`;
         }
-    ], [
-        /([^\w\d])(-?0x[A-Fa-f0-9]+)/gm, 
-        function(m, p1, p2) {
-            return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
-        }
-    ], [
-        /([^\w\d])(-?\d+(\.\d+)?j?)/gm, 
-        function(m, p1, p2) {
-            return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
-        }
-    ], [
+    ],
+    ...std_number__,
+    [
         /^([\u200b ]*)\@([\d\w_.]+)/gm,
         function(m, p1, p2) {
             return `<span class="dec">${(p1 + "@" + p2).split('').join('\u200b')}</span>`;
         }
-    ], [
-        /([\w\d_]*)(Error|Exception|Failure|Exit|Warning)/gm,
-        function(m, p1, p2) {
-            return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
-        }
-    ], [
-        /Stop([\w\d_]+)/gm,
-        function(m, p1, p2) {
-            return `<span class="err">${("Stop" + p2).split('').join('\u200b')}</span>`;
-        }
-    ], [
+    ],
+    ...std_err__,
+    [
         /\u200b/gm,
         ""
     ]
 ];
 
-function mark_syntax_py(st) {
+function mark_syntax_py__(st) {
     st = st.replace(/\n/gm, " \n");
-    var sym = "[\\"+"\\.,:;()[]{}~|/-+=*^%&@ ".split('').join("\\")+"]";
-    var gsym = "("+sym+")";
-    for(var r of py_regex) {
+    st += "\n";
+    for(var r of py_regex__) {
         st = st.replace(r[0], r[1]);
-    } for(var r of cls) {
-        st = st.replace(
-            RegExp("^" + r + gsym, "gm"),
-            `<span class="cls">${r.split('').join('\u200b')}</span>$1`
-        );
-        st = st.replace(
-            RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"), 
-            `$1<span class="cls">${r.split('').join('\u200b')}</span>$2`
-        );
-        st = st.replace(
-            RegExp("^" + r + "$"),
-            `<span class="cls">${r.split('').join('\u200b')}</span>`
-        );
-    } for(var r of kw) {
-        st = st.replace(
-            RegExp("^"+r+gsym, "gm"), 
-            `<span class="kw">${r.split('').join('\u200b')}</span>$1`
-        );
-        st = st.replace(
-            RegExp("("+sym+"|\n|[\u200b ]+)"+r+gsym, "gm"), 
-            `$1<span class="kw">${r.split('').join('\u200b')}</span>$2`
-        );
-        st = st.replace(
-            RegExp("^" + r + "$"),
-            `<span class="kw">${r.split('').join('\u200b')}</span>`
-        );
-    } for(var r of ["await", "async"]) {
-        st = st.replace(
-            RegExp("^"+r+gsym, "gm"), 
-            `<span class="aio">${r.split('').join('\u200b')}</span>$1`
-        );
-        st = st.replace(
-            RegExp("("+sym+"|\n|[\u200b ]+)"+r+gsym, "gm"), 
-            `$1<span class="aio">${r.split('').join('\u200b')}</span>$2`
-        );
-        st = st.replace(
-            RegExp("^" + r + "$"),
-            `<span class="aio">${r.split('').join('\u200b')}</span>`
-        );
     }
- st = st.replace(/\u200b/gm, "");
-    return st.replace(/([^ ])\u200b/gm, "$1").replace(/ +\n/gm, "\n");
+    return mark_syntax__(st, py_kw__, py_cls__);
 }

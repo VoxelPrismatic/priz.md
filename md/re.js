@@ -1,7 +1,7 @@
-var line_regex = [];
+var line_regex__ = [];
 
-function set_regex() {
-    line_regex = [
+function set_regex__() {
+    line_regex__ = [
         [/\\([^uUNx])/gm, function(m, p) {return "\\u{" + p.charCodeAt(0).toString(16) + "}";}],
 
         //Pre-Escape
@@ -99,7 +99,7 @@ function set_regex() {
         [/\\([^u])/gm, function(m, p1) {return `\\u{${p1.charCodeAt(0).toString(16)}}`;}],
 
         //Headers
-        [/^\#{1,6}\] +(.+)$/gm, mk_head],
+        [/^\#{1,6}\] +(.+)$/gm, mk_head__],
 
         //Main MD
         [/^\#(.+?)\#/gm, "<b>$1</b>"],
@@ -151,9 +151,9 @@ function set_regex() {
                 return `<span>${p2}</span><span class="accent">${accent}</span>`;
             }
         ],
-            
+
         [
-            /\\u\{([a-fA-F0-9]+)\}/gm, 
+            /\\u\{([a-fA-F0-9]+)\}/gm,
             function(m, p1) {
                 var st = String.fromCharCode("0x" + p1);
                 if(st == "<")

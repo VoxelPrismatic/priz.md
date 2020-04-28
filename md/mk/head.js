@@ -1,4 +1,4 @@
-function mk_head(m, p1, escape = true, cls = "") {
+function mk_head__(m, p1, escape = true, cls = "") {
     if(cls == m) {
         cls = "";
     }

@@ -33,9 +33,9 @@ repl_js = [
     [r"\n *", r"\n"],
     [r" *\n", r"\n"],
     [r"\n *([\}\]\)])", r"\1\n"],
-    [r"\), \(", r"),\n("],
-    [r"\], \[", r"],\n["],
-    [r"\}, \{", r"},\n{"],
+    #[r"\), \(", r"),\n("],
+    #[r"\], \[", r"],\n["],
+    #[r"\}, \{", r"},\n{"],
     [r'" *\+ *\n"', r''],
     [r"' *\+ *\n'", r""],
 ]
@@ -71,12 +71,14 @@ files = []
 grab_dirs("syntax-highlighting")
 
 for file in files:
+    print("\n\nWriting", file.split("/")[-1])
     st = open(file).read()
     for r, s in repl_js + repl_ttl:
         st = re.sub(r, s, st)
-    open("out/" + file.split("/")[1].split(".")[0] + ".min.js", "w+").write(header + st)
-
-
+    filename = "out/lang/" + file.split("/")[1].split(".")[0] + "-lang.min.js"
+    open(filename, "w+").write(header + st)
+    print("Testing", file.split("/")[-1])
+    os.system("nodejs " + filename);
 
 for r, s in repl_ttl:
     minjs_ = ""

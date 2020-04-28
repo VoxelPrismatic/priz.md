@@ -35,13 +35,17 @@
     margin: 5px;
     padding: 5px;
     color: #aaaaaa;
-    font-family: "Ubuntu Mono";
+    .mono-font();
+    cursor: auto;
+    white-space: pre;
+} .code * {
+    .mono-font();
 } .invis {
     display: none;
 } .bgcolor {
     background-color: #112222;
 } .mono {
-    font-family: "Ubuntu Mono";
+    .mono-font();
 } .hidden-marker::marker {
     color: #0000;
 } .flip-h {
@@ -56,12 +60,12 @@
     display: none;
 } .h-dropper {
     font-weight: bold;
-    font-family: "Ubuntu Mono";
+    .mono-font();
     float: right;
     cursor: n-resize;
 } .h-dropper-closed {
     font-weight: bold;
-    font-family: "Ubuntu Mono";
+    .mono-font();
     float: right;
     cursor: s-resize;
 }

@@ -1,4 +1,4 @@
-function mk_table(st) {
+function mk_table__(st) {
     var table_lines = -1;
     var table_aligns = [];
     var table_str = [];

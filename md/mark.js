@@ -1,5 +1,5 @@
 function mark(st) {
-    for(var r of line_regex) {
+    for(var r of line_regex__) {
         if(typeof r[1] == "string" && !(r[1].startsWith("\\u")))
             st = st.replace(r[0], r[1]);
         else
@@ -9,8 +9,8 @@ function mark(st) {
 }
 
 function mark_page(st) {
-    if(!line_regex.length) {
-        set_regex();
+    if(!line_regex__[0]) {
+        set_regex__();
     }
     if(!(st.endsWith("\n")))
        st += "\n";
@@ -21,8 +21,11 @@ function mark_page(st) {
     var table = "";
     var ol = "";
     var ul = "";
+    var al = "";
     var quoted = "";
     var dropper = "";
+    var syntax = "";
+    var code = "";
     var incode = false;
     var indropper = false;
     var intable = false;
@@ -34,7 +37,7 @@ function mark_page(st) {
         }
         if(!incode && line == "---" && indropper) {
             indropper = false;
-            str += mk_dropper(dropper.slice(0, -1));
+            str += mk_dropper__(dropper.slice(0, -1));
             dropper = "";
             continue;
         }
@@ -42,18 +45,32 @@ function mark_page(st) {
             dropper += line + "\n";
             continue;
         }
-        
+
         // Code block
-        if(line == "```") {
+        if(line.match(/^\`\`\`(\w+)?/gm)) {
             incode = !incode;
-            if(incode)
+            if(incode) {
+                syntax = line.slice(3);
+            } else {
                 str += `<div class="code">`;
-            else
-                str += `</div>`
+                try {
+                    var fn = syntax_alias__[syntax];
+                    if(typeof fn == "string") {
+                        fn = syntax_alias__[fn];
+                    }
+                    str += fn(code);
+                } catch(err) {
+                    console.error(err);
+                    str += code;
+                }
+                str += "</div>";
+                code = "";
+                syntax = "";
+            }
             continue;
         }
         if(incode) {
-            str += line + "\n";
+            code += line + "\n";
             continue;
         }
 
@@ -72,7 +89,7 @@ function mark_page(st) {
             intable = true;
         }
         if((line == "---" || line == "" || line.replace(/^(\|.+)+\|$/gm, "") != "") && intable) {
-            str += mk_table(table).replace(/\n/gm, "<br>");
+            str += mk_table__(table).replace(/\n/gm, "<br>");
             table = "";
             intable = false;
             continue;
@@ -82,13 +99,25 @@ function mark_page(st) {
             continue;
         }
 
+        // Ordered list [Numbers]
         if(line && line.replace(/^\d+[\]\)\.\-] .*$/gm, "") == "") {
             ol += line.replace(/^\d+[\]\)\.\-] /gm, "") + "\n";
             continue;
         }
         if(ol) {
-            str += mk_ol(ol.slice(0, -1));
+            str += mk_ol__(ol.slice(0, -1));
             ol = "";
+        }
+
+
+        // Ordered list [Letters]
+        if(line && line.replace(/^\w+[\]\)\.\-] .*$/gm, "") == "") {
+            al += line.replace(/^\d+[\]\)\.\-] /gm, "") + "\n";
+            continue;
+        }
+        if(al) {
+            str += mk_al__(al.slice(0, -1));
+            al = "";
         }
 
         // Unordered list
@@ -97,7 +126,7 @@ function mark_page(st) {
             continue;
         }
         if(ul) {
-            str += mk_ul(ul.slice(0, -1));
+            str += mk_ul__(ul.slice(0, -1));
             ul = "";
         }
 
