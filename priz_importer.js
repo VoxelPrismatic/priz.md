@@ -27,7 +27,13 @@ if(iframe_md__ && !meta__) {
     script__.src = base__ + "md.min.js";
     script__.type = "text/javascript";
     script__.onload = function() {
+        console.log("Ready to interpret markdown");
         window.onresize = sub_styles();
+        try {
+            startLoading();
+        } catch(err) {
+            // No auto function
+        }
     }
 }
 head__.after(script__);
