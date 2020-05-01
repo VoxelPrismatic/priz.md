@@ -207,7 +207,7 @@ function getRules__() {
 }
 
 try {
-    swapColor; // Test if someone defined it first
+    swapColor;
 } catch(err) {
     function swapColor(color, bg) {
         var rules = getRules__();

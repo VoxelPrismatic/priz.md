@@ -10,6 +10,7 @@ function mark(st) {
 
 function load_script(src) {
     globalThis.src__ = src;
+    console.groupCollapsed("Dynamic load");
     console.info(`Dynamically loading '${src__}'`);
     fetch(src).then(
         resp => resp.text().then(
@@ -19,6 +20,7 @@ function load_script(src) {
             }
         )
     );
+    console.groupEnd("Dynamic load");
 }
 
 function mark_page(st) {

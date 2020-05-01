@@ -14,7 +14,7 @@ try {
     sub_styles();
 } catch(err) {
     function sub_styles() {
-        console.group("Reformatting page");
+        console.groupCollapsed("Reformatting page");
         if(find(">table")) {
             console.log("Styling tables")
             var styleTables = styleTables || undefined;
