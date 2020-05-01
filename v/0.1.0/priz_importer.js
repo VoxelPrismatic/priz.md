@@ -1,4 +1,4 @@
-var base__ = base__.replace(/priz.md(-dev)?\//, "priz.md$1/out/"); // Works for the dev repo, and versions
+var base__ = "https://voxelprismatic.github.io/priz.md/out/v/1/";
 var head__ = document.getElementById("priz_importer");
 var meta__ = document.getElementById("priz_syntax");
 if(iframe_md__ && !meta__) {

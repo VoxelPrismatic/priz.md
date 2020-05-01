@@ -1,7 +1,16 @@
 <html>
   <head>
-    <meta id="priz_syntax" content="py,js,java,html">
-    <script src="markup.js" type="text/javascript" id="priz_script"></script>
+    <script type="text/javascript">
+      var scr = document.createElement("script");
+      scr.id = "priz_script";
+      scr.type = "text/javascript";
+      var src = "../";
+      if(document.URL.split("?v=")[1])
+        src += "v/" + document.URL.split("?v=")[1] + "/";
+      src += "markup.js";
+      scr.src = src;
+      document.head.append(scr);
+    </script>
   </head>
   <body style="background-color: #122;">
     <h1 id="head" style="transform: none; top: 0px;">VIEW THE OUPUT</h1>

@@ -4,9 +4,12 @@ A "server-side" processor for my markdown flavor
 *it processes on whichever device calls it
 
 [View the syntax](https://voxelprismatic.github.io/priz.md/view), it is different
-than regular MarkDown in more ways than one.
+than regular MarkDown in more ways than one. Please note that this page reflects
+the latest syntax only. Sorry if you need an older version. However, you can test
+any of the versions by adding `?v=#` after the link below, where `#` is the version
+number.
 
-[Test it here](https://voxelprismatic.github.io/priz.md/markup)
+[Test it here](https://voxelprismatic.github.io/priz.md/view/markup)
 
 [How to use it](#-how-to-use-it) | [Important notices](#-important-notices) |
 [Features / bug fixes](#-features--bug-fixes) | [Syntax Highlighting](#-syntax-highlighting)
@@ -97,3 +100,6 @@ constantly need to set up your page.
 
 4. You no longer need to call `sub_styles()`, `mark_page` sets a timeout for it
 anyway.
+
+5. Want a specific version? Use `.../priz.md/v/#/...` instead, where `#` is the
+version number.

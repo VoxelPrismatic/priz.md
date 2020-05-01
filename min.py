@@ -14,6 +14,8 @@ print("Generating md.min.js")
 def grab_dirs(root, end = ".js"):
     if not root.endswith("/"):
         root += "/"
+    if root.endswith("v/"):
+        return
     for file in os.listdir(root):
         if file.endswith(end):
             files.append(root + file)
@@ -23,7 +25,7 @@ def grab_dirs(root, end = ".js"):
             except:
                 pass
 
-grab_dirs("md")
+grab_dirs("src/md")
 
 minjs = ""
 
@@ -68,14 +70,29 @@ for file in files:
 print("Generating syntax files")
 
 files = []
-grab_dirs("syntax-highlighting")
+grab_dirs("src/lang")
 
 for file in files:
     print("\n\nWriting", file.split("/")[-1])
     st = open(file).read()
     for r, s in repl_js + repl_ttl:
         st = re.sub(r, s, st)
-    filename = "out/lang/" + file.split("/")[1].split(".")[0] + "-lang.min.js"
+    filename = "out/lang/" + file.split("/")[-1].split(".")[0] + "-lang.min.js"
+    open(filename, "w+").write(header + st)
+    print("Testing", file.split("/")[-1])
+    os.system("nodejs " + filename);
+
+print("Generating extra files")
+
+files = []
+grab_dirs("src/more")
+
+for file in files:
+    print("\n\nWriting", file.split("/")[-1])
+    st = open(file).read()
+    for r, s in repl_js + repl_ttl:
+        st = re.sub(r, s, st)
+    filename = "out/more/" + file.split("/")[-1].split(".")[0] + ".min.js"
     open(filename, "w+").write(header + st)
     print("Testing", file.split("/")[-1])
     os.system("nodejs " + filename);
@@ -92,16 +109,16 @@ open("out/md.min.js", "w+").write(minjs)
 print("Running lesscss")
 
 files = []
-grab_dirs("css", ".less")
+grab_dirs("src/css", ".less")
 for file in files:
     st = open(file).read()
     st = st.replace("/prizm.dev/assets/css", ".")
     open(file, "w").write(st)
 
-os.system("sudo lessc ./css/style.less ./css/style.css")
+os.system("sudo lessc ./src/css/style.less ./src/css/style.css")
 
 print("Generating style.min.css")
-mincss = open("css/style.css").read()
+mincss = open("src/css/style.css").read()
 
 
 for r, s in repl_css:

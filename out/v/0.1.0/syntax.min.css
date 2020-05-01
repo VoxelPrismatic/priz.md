@@ -1,0 +1,13 @@
+.fn {color:#ff8800;font-weight:bold;}
+.aio {color:#ff0088;font-style:italic;}
+.cls {color:#0088ff;font-style:italic;font-weight:bold;}
+.var {color:#00ff88;}
+.op {color:#ffff00;}
+.kw {color:#ff88ff;}
+.str {color:#00ffff;}
+.dec {color:#0088ff;}
+.comm {color:#777777;}
+.err {color:#ff0000;font-style:italic;font-weight:bold;}
+.comm * {color:#777777;}
+.str * {color:#00ffff;}
+.str .op {color:#ffff00;}

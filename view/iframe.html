@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      var scr = document.createElement("script");
+      scr.id = "priz_script";
+      scr.type = "text/javascript";
+      var src = "../";
+      if(document.URL.split("?v=")[1])
+        src += "v/" + document.URL.split("?v=")[1] + "/";
+      src += "iframe.js";
+      scr.src = src;
+      document.head.append(scr);
+    </script>
+  </head>
+  <body>
+    <h1>#] USE THE CONSOLE</h1>
+    Test in the console<br>
+    To view it live, navigate to <a href="/priz.md/markup">./markup.html</a>
+  </body>
+</html>

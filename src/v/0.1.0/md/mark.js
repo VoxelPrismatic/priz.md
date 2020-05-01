@@ -69,7 +69,12 @@ function mark_page(st) {
                             var fn = syntax_alias__[syntax];
                         } catch(err) {
                             load_script(`${base__}lang/base-lang.min.js`);
-                            load_script(`${base__}lang/index-lang.min.js`)
+                            load_script(`${base__}lang/index-lang.min.js`);
+                            stylesheet__ = document.createElement("link");
+                            stylesheet__.rel = "stylesheet";
+                            stylesheet__.type = "text/css";
+                            stylesheet__.href = base__ + "syntax.min.css";
+                            document.head.append(stylesheet__);
                         } if(typeof fn == "string")
                             syntax = syntax_alias__[syntax];
                         fn = syntax_alias__[syntax];
@@ -78,6 +83,7 @@ function mark_page(st) {
                             redefine_aliases__();
                             fn = syntax_alias__[syntax];
                         }
+                        console.log(code);
                         str += fn(code);
                     } catch(err) {
                         console.error(err);
