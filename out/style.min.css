@@ -43,8 +43,8 @@ ul > li::marker,ol > li::marker,al > li::marker{font-family:"Ubuntu Mono",mono;c
 .flip-v{transform:scaleY(-100%);display:inline-block;}
 .flip-h.flip-v{transform:scale(-100%,-100%);}
 .dropper-closed > div{display:none;}
-.h-dropper{font-weight:bold;font-family:"Ubuntu Mono",mono;float:right;cursor:n-resize;}
-.h-dropper-closed{font-weight:bold;font-family:"Ubuntu Mono",mono;float:right;cursor:s-resize;}
+.h-dropper{font-weight:bold;font-family:"Ubuntu Mono",mono;float:right;cursor:alias;}
+.h-dropper-closed{font-weight:bold;font-family:"Ubuntu Mono",mono;float:right;}
 h1,h2,h3,h4,h5,h6{text-shadow:0px 0px 5px;}
 a:hover,a:focus{text-shadow:0px 0px 10px;}
 h1:hover,h1:focus{text-shadow:0px 0px 10px;}

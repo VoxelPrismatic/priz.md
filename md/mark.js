@@ -62,8 +62,8 @@ function mark_page(st) {
             if(incode) {
                 syntax = line.slice(3).trim();
             } else {
+                str += `<div class="code">`;
                 if(syntax) {
-                    str += `<div class="code">`;
                     try {
                         try {
                             var fn = syntax_alias__[syntax];

@@ -266,13 +266,12 @@ al > li::marker {
   font-weight: bold;
   font-family: "Ubuntu Mono", mono;
   float: right;
-  cursor: n-resize;
+  cursor: alias;
 }
 .h-dropper-closed {
   font-weight: bold;
   font-family: "Ubuntu Mono", mono;
   float: right;
-  cursor: s-resize;
 }
 h1,
 h2,
