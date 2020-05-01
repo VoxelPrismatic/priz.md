@@ -43,13 +43,18 @@ css__.type = "text/css";
 if(lite_css__)
     css__.href = base__ + "style.lite.min.css";
 else {
-    css__.id = "priz_neon"
+    css__.id = "priz_neon_css"
     css__.href = base__ + "style.min.css";
+    var script__ = document.createElement("script");
+    script__.src = base__ + "more/neon.js";
+    script__.id = "priz_neon_js";
+    script__.type = "text/javascript";
+    head__.after(script__);
 }
 head__.after(css__);
 if(meta__) {
     var script__ = document.createElement("script");
-    script__.src = base__.slice(0, -4) + "priz_syntaxer.js";
+    script__.src = base__.replace(/out\/.*/gm, "") + "priz_syntaxer.js";
     script__.id = "priz_syntaxer";
     script__.type = "text/javascript";
     head__.after(script__);
