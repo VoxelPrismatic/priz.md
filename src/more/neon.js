@@ -218,7 +218,7 @@ function swapColor(color, bg) {
     }
 }
 
-function setTransitions__() {
+function setTransitions() {
     var rules = getRules__();
     var stuffs = [];
     if(!rules)

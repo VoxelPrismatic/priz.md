@@ -10,6 +10,7 @@ function mark(st) {
 
 function load_script(src) {
     globalThis.src__ = src;
+    console.info(`Dynamically loading '${src__}'`);
     fetch(src).then(
         resp => resp.text().then(
             code => {
@@ -80,6 +81,10 @@ function mark_page(st) {
                         fn = syntax_alias__[syntax];
                         if(fn == undefined) {
                             load_script(`${base__}lang/${syntax}-lang.min.js`);
+                            if(syntax == "html") {
+                                load_script(`${base__}lang/js-lang.min.js`);
+                                load_script(`${base__}lang/css-lang.min.js`);
+                            }
                             redefine_aliases__();
                             fn = syntax_alias__[syntax];
                         }

@@ -10,18 +10,31 @@ function compSty(elem) {
     }
 }
 
-function sub_styles() {
-    if(find(">table")) {
-        styleTables();
-    }
-    if(find(".accent")) {
-        style_accents();
-    }
-    if(find(".dict")) {
-        resizeDicts();
+try {
+    sub_styles();
+} catch(err) {
+    function sub_styles() {
+        console.group("Reformatting page");
+        if(find(">table")) {
+            console.log("Styling tables")
+            var styleTables = styleTables || undefined;
+            logFunc(styleTables);
+        } if(find(".accent")) {
+            console.log("Moving accents")
+            var style_accents = style_accents || undefined;
+            logFunc(style_accents);
+        } if(find(".dict")) {
+            var resizeDicts = resizeDicts || undefined;
+            logFunc(resizeDicts);
+        }
+        console.groupEnd("Reformatting page");
     }
 }
 
-function updateSpacer() {
-    // Not needed for external sources
+try {
+    updateSpacer();
+} catch(err) {
+    function updateSpacer() {
+        // Not needed for external sources
+    }
 }

@@ -1,4 +1,4 @@
-var base__ = "https://voxelprismatic.github.io/priz.md/v/1/";
+var base__ = "https://voxelprismatic.github.io/priz.md/v/0.1.0/";
 var iframe_md__ = false;
 var lite_css__ = false;
 

@@ -150,7 +150,7 @@ function sel_cls_dropper_gt_tag_div__(style, color) {
     style.borderLeftColor = color;
 }
 
-function cls_code(style, color, bg) {
+function cls_code__(style, color, bg) {
     bg = bg.replace(/1/gm, "0").replace(/2/gm, "1");
     if(bg.length == 5)
         bg += "6";
@@ -214,11 +214,11 @@ function swapColor(color, bg) {
             if(txt && selectors__[txt])
                 selectors__[txt](rule.style, color, bg);
         }
-        setTransitions__()
+        setTransitions__();
     }
 }
 
-function setTransitions__() {
+function setTransitions() {
     var rules = getRules__();
     var stuffs = [];
     if(!rules)
