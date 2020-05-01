@@ -59,7 +59,7 @@ function mark_page(st) {
                     globalThis.syntax__ = syntax;
                     if(fn == undefined) {
                         console.warn(`Loading syntax highlighting for '${syntax__}' on the fly`);
-                        fetch(`https://voxelprismatic.github.io/priz.md/out/lang/${syntax__}-lang.min.js`).then(
+                        fetch(`${base__}lang/${syntax__}-lang.min.js`).then(
                             resp => resp.text().then(
                                 code => {
                                     globalThis.eval(code);
@@ -157,5 +157,6 @@ function mark_page(st) {
     str = str.replace(/\<((\/)?(h\d|div|ol|ul))\>([ \n]*\<br\>[ \n]*)+/gm, "<$1$2><br>");
     str = str.replace(/([ \n]*\<br\>[ \n]*)+\<((\/)?(h\d|div|ol|ul))\>/gm, "<br><$2$3>");
     str = str.replace(/(<br>)*?<(\/)blockquote>(<br>)*?/gm, "<$2blockquote>");
+    window.setTimeout(sub_styles, 100);
     return str;
 }
