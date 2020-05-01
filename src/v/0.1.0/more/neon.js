@@ -200,30 +200,33 @@ var selectors__ = {
     "textarea": tag_textarea__
 }
 
-function getRules__() {
-    for(var ruleset of document.styleSheets)
-        if(ruleset.ownerNode.id == "priz_neon")
-            return ruleset.cssRules;
+try {
+    getRules();
+} catch(err) {
+    function getRules() {
+        for(var ruleset of document.styleSheets)
+            if(ruleset.ownerNode.id == "priz_neon")
+                return ruleset.cssRules;
+    }
 }
-
 try {
     swapColor;
 } catch(err) {
     function swapColor(color, bg) {
-        var rules = getRules__();
+        var rules = getRules();
         if(rules) {
             for(var rule of rules) {
                 let txt = rule.selectorText;
                 if(txt && selectors__[txt])
                     selectors__[txt](rule.style, color, bg);
             }
-            setTransitions__();
+            setTransitions();
         }
     }
 }
 
 function setTransitions() {
-    var rules = getRules__();
+    var rules = getRules();
     var stuffs = [];
     if(!rules)
         return;
