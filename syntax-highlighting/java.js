@@ -61,7 +61,7 @@ var java_regex = [
     ]
 ];
 
-function mark_syntax_java(st) {
+function mark_syntax_java__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
     for(var r of java_regex) {

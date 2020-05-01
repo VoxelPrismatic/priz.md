@@ -9,7 +9,7 @@ MarkDown in more ways than one.
 [Test it here](https://voxelprismatic.github.io/priz.md/markup)
 
 [How to use it](#-how-to-use-it) | [Important notices](#-important-notices) |
-[Features / bug fixes](#-features--bug-fixes) | [Syntax Highlighting](#-syntax-highlighting)
+[Features / bug fixes](#-features--bug-fixes) | [Syntax Highlighting](#-syntax-highlighting) | [Tips and tricks](#-tips-and-tricks)
 
 ## #] How to use it
 Add the following line to the `<head>` of your page.
@@ -77,3 +77,13 @@ Just add the following line before the script to the `<head>` of your page, wher
 | `html` | `html`, `htm`, `html4`, `html5`, `xhtml`, `khtml`, `xml` |
 | `css` | `css`, `css3`, `lesscss`, `less`, `scss` |
 | `c` | `c`, `cpp`, `c++`, `obj-c`, `objective-c`, `c#`, `cs`, `c-sharp`, `arduino` |
+
+## #] Tips and tricks
+1. You can define your own `startLoading()` function so when the markdown loads, it can start interpreting right away.
+
+2. Use the `markup.js` script. Almost all important functions directly related to the markdown interpreter use underscores, with 2 of them at the end of each function.
+
+3. You can load syntax highlighting regex whenever you want with the `priz_syntaxer.js` script.
+Still requires the meta thing from above, however. You can either run it once, or call it however
+many times you want with the `load_regex__` function, where the only argument being which
+element to place the additional scripts after.

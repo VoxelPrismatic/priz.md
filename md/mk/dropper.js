@@ -1,7 +1,7 @@
 function mk_dropper__(st) {
     var str = "";
     var id = st.split("\n")[0].slice(3, -3);
-    var heading = mk_head__(id, id.split(" ").slice(1).join(" "), false);
+    var heading = mk_head(id, id.split(" ").slice(1).join(" "), false);
     var thing = heading.slice(-5);
     heading = heading.slice(0, -5);
     heading += "<span class='h-dropper h-dropper-closed' onclick='toggleDrop(this)'>[V]</span>";

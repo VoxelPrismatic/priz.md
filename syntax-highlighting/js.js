@@ -16,9 +16,9 @@ var js_cls__ = [
 var js_kw__ = [
     "async", "function", "block", "break", "class", "const", "continue",
     "debugger", "default", "do", "while", "empty", "export", "for", "of",
-    "function*", "if", "else", "import", "import.meta", "label", "let",
+    "function\\*", "if", "else", "import", "import.meta", "label", "let",
     "return", "throw", "try", "catch", "var", "with", "delete", "in", "new",
-    "instanceof", "new", "this", "super", "typeof", "void", "yield", "yield*",
+    "instanceof", "new", "this", "super", "typeof", "void", "yield", "yield\\*",
     "await", "extends", "from", "typeof"
 ];
 
@@ -64,7 +64,7 @@ var js_regex__ = [
     ],
     ...std_escape__,
     [
-        /^([\u200b ]*)function ([$\w\d_]+)/gm,
+        /^([\u200b ]*)function ([\$\w\d_]+)/gm,
         `$1<span class="kw">function</span> <span class="fn">$2</span>`
     ], [
         /^([\u200b ]*)class ([$\w\d_]+)/gm,

@@ -4,6 +4,7 @@ var mark_syntax_java__ = mark_syntax_java__ || undefined;
 var mark_syntax_html__ = mark_syntax_html__ || undefined;
 var mark_syntax_css__ = mark_syntax_css__ || undefined;
 var mark_syntax_c__ = mark_syntax_c__ || undefined;
+var mark_syntax_bash__ = mark_syntax_bash__ || undefined;
 
 var syntax_alias__ = {
     "py": mark_syntax_py__,
@@ -15,6 +16,8 @@ var syntax_alias__ = {
 
     "js": mark_syntax_js__,
     "javascript": "js",
+    "node": "js",
+    "nodejs": "js",
     "ecma": "js",
     "ecmascript": "js",
 
@@ -45,4 +48,16 @@ var syntax_alias__ = {
     "cs": "c",
     "c-sharp": "c",
     "arduino": "c",
+
+    "bash": mark_syntax_bash__,
 };
+
+function redefine_aliases__() {
+    syntax_alias__["py"] = mark_syntax_py__;
+    syntax_alias__["js"] = mark_syntax_js__;
+    syntax_alias__["java"] = mark_syntax_java__;
+    syntax_alias__["html"] = mark_syntax_html__;
+    syntax_alias__["css"] = mark_syntax_css__;
+    syntax_alias__["c"] = mark_syntax_c__;
+    syntax_alias__["bash"] = mark_syntax_bash__;
+}

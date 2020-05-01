@@ -21,7 +21,7 @@ function mk_table__(st) {
                         table_aligns.push("right");
                     } else {
                         table_str[0].push(trim(header));
-                        table_aligns.push("justified");
+                        table_aligns.push("left");
                     }
                 }
             } else {
@@ -51,9 +51,9 @@ function mk_table__(st) {
         for(var col of row) {
             col_num += 1;
             if(row_num == 0)
-                str += Elm("th", mark_page(col), {style: "text-align: " + table_aligns[col_num]});
+                str += Elm("th", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
             else
-                str += Elm("td", mark_page(col), {style: "text-align: " + table_aligns[col_num]});
+                str += Elm("td", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
         }
         str += "</tr>";
     }

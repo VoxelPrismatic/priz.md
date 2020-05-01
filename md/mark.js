@@ -9,9 +9,8 @@ function mark(st) {
 }
 
 function mark_page(st) {
-    if(!line_regex__[0]) {
+    if(!line_regex__[0])
         set_regex__();
-    }
     if(!(st.endsWith("\n")))
        st += "\n";
     st = st.replace(/\\ *\n/gm, "");
@@ -32,9 +31,8 @@ function mark_page(st) {
 
     for(var line of st.split("\n")) {
         // Collapsible section
-        if(!incode && line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "") {
+        if(!incode && line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "")
             indropper = true;
-        }
         if(!incode && line == "---" && indropper) {
             indropper = false;
             str += mk_dropper__(dropper.slice(0, -1));
@@ -50,13 +48,27 @@ function mark_page(st) {
         if(line.match(/^\`\`\`(\w+)?/gm)) {
             incode = !incode;
             if(incode) {
-                syntax = line.slice(3);
+                syntax = line.slice(3).trim();
             } else {
                 str += `<div class="code">`;
                 try {
                     var fn = syntax_alias__[syntax];
-                    if(typeof fn == "string") {
-                        fn = syntax_alias__[fn];
+                    if(typeof fn == "string")
+                        syntax = syntax_alias__[syntax];
+                    fn = syntax_alias__[syntax];
+                    globalThis.syntax__ = syntax;
+                    if(fn == undefined) {
+                        console.warn(`Loading syntax highlighting for '${syntax__}' on the fly`);
+                        fetch(`https://voxelprismatic.github.io/priz.md/out/lang/${syntax__}-lang.min.js`).then(
+                            resp => resp.text().then(
+                                code => {
+                                    globalThis.eval(code);
+                                    console.info(`Finished loading syntax highlighting for '${syntax__}'`);
+                                }
+                            )
+                        );
+                        redefine_aliases__();
+                        fn = syntax_alias__[syntax];
                     }
                     str += fn(code);
                 } catch(err) {
@@ -112,7 +124,7 @@ function mark_page(st) {
 
         // Ordered list [Letters]
         if(line && line.replace(/^\w+[\]\)\.\-] .*$/gm, "") == "") {
-            al += line.replace(/^\d+[\]\)\.\-] /gm, "") + "\n";
+            al += line.replace(/^\w+[\]\)\.\-] /gm, "") + "\n";
             continue;
         }
         if(al) {

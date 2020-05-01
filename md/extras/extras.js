@@ -22,10 +22,6 @@ function sub_styles() {
     }
 }
 
-try {
-    updateSpacer();
-} catch(err) {
-    function updateSpacer() {
-        // Not needed for external sources
-    }
+function updateSpacer() {
+    // Not needed for external sources
 }
