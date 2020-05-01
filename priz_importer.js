@@ -46,7 +46,7 @@ else {
     css__.id = "priz_neon_css"
     css__.href = base__ + "style.min.css";
     var script__ = document.createElement("script");
-    script__.src = base__ + "more/neon.js";
+    script__.src = base__ + "more/neon.min.js";
     script__.id = "priz_neon_js";
     script__.type = "text/javascript";
     head__.after(script__);
