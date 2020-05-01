@@ -90,7 +90,6 @@ function mark_page(st) {
                             redefine_aliases__();
                             fn = syntax_alias__[syntax];
                         }
-                        console.log(code);
                         str += fn(code);
                     } catch(err) {
                         console.error(err);
