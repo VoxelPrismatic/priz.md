@@ -8,6 +8,18 @@ function mark(st) {
     return st;
 }
 
+function load_script(src) {
+    globalThis.src__ = src;
+    fetch(src).then(
+        resp => resp.text().then(
+            code => {
+                globalThis.eval(code);
+                console.info(`Finished loading '${src__}'`);
+            }
+        )
+    );
+}
+
 function mark_page(st) {
     if(!line_regex__[0])
         set_regex__();
@@ -50,29 +62,28 @@ function mark_page(st) {
             if(incode) {
                 syntax = line.slice(3).trim();
             } else {
-                str += `<div class="code">`;
-                try {
-                    var fn = syntax_alias__[syntax];
-                    if(typeof fn == "string")
-                        syntax = syntax_alias__[syntax];
-                    fn = syntax_alias__[syntax];
-                    globalThis.syntax__ = syntax;
-                    if(fn == undefined) {
-                        console.warn(`Loading syntax highlighting for '${syntax__}' on the fly`);
-                        fetch(`${base__}lang/${syntax__}-lang.min.js`).then(
-                            resp => resp.text().then(
-                                code => {
-                                    globalThis.eval(code);
-                                    console.info(`Finished loading syntax highlighting for '${syntax__}'`);
-                                }
-                            )
-                        );
-                        redefine_aliases__();
+                if(syntax) {
+                    str += `<div class="code">`;
+                    try {
+                        try {
+                            var fn = syntax_alias__[syntax];
+                        } catch(err) {
+                            load_script(`${base__}lang/base-lang.min.js`);
+                            load_script(`${base__}lang/index-lang.min.js`)
+                        } if(typeof fn == "string")
+                            syntax = syntax_alias__[syntax];
                         fn = syntax_alias__[syntax];
+                        if(fn == undefined) {
+                            load_script(`${base__}lang/${syntax}-lang.min.js`);
+                            redefine_aliases__();
+                            fn = syntax_alias__[syntax];
+                        }
+                        str += fn(code);
+                    } catch(err) {
+                        console.error(err);
+                        str += code;
                     }
-                    str += fn(code);
-                } catch(err) {
-                    console.error(err);
+                } else {
                     str += code;
                 }
                 str += "</div>";
