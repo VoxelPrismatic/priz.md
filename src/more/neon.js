@@ -206,15 +206,19 @@ function getRules__() {
             return ruleset.cssRules;
 }
 
-function swapColor(color, bg) {
-    var rules = getRules__();
-    if(rules) {
-        for(var rule of rules) {
-            let txt = rule.selectorText;
-            if(txt && selectors__[txt])
-                selectors__[txt](rule.style, color, bg);
+try {
+    swapColor; // Test if someone defined it first
+} catch(err) {
+    function swapColor(color, bg) {
+        var rules = getRules__();
+        if(rules) {
+            for(var rule of rules) {
+                let txt = rule.selectorText;
+                if(txt && selectors__[txt])
+                    selectors__[txt](rule.style, color, bg);
+            }
+            setTransitions__();
         }
-        setTransitions__();
     }
 }
 
