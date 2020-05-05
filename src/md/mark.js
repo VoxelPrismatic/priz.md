@@ -8,6 +8,13 @@ function mark(st) {
     return st;
 }
 
+function sleep(ms) {
+    var endTime = Date.now() + ms;
+    while(endTime > Date.now()) {
+        // Sleep
+    }
+}
+
 function load_script(src) {
     globalThis.src__ = src;
     console.groupCollapsed("Dynamic load");
@@ -20,6 +27,7 @@ function load_script(src) {
             }
         )
     );
+    sleep(25);
     console.groupEnd("Dynamic load");
 }
 
