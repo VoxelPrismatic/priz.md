@@ -231,7 +231,7 @@ al > li::marker {
   color: #aaaaaa;
   font-family: "Ubuntu Mono", mono;
   cursor: auto;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 .code * {
   font-family: "Ubuntu Mono", mono;
