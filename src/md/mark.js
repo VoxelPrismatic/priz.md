@@ -8,26 +8,22 @@ function mark(st) {
     return st;
 }
 
-function sleep(ms) {
-    var endTime = Date.now() + ms;
-    while(endTime > Date.now()) {
-        // Sleep
-    }
-}
 
 function load_script(src) {
     globalThis.src__ = src;
     console.groupCollapsed("Dynamic load");
-    console.info(`Dynamically loading '${src__}'`);
-    fetch(src).then(
-        resp => resp.text().then(
-            code => {
-                globalThis.eval(code);
-                console.info(`Finished loading '${src__}'`);
-            }
-        )
-    );
-    sleep(25);
+    console.info(`Reading '${src__}'`);
+    var f = new XMLHttpRequest()
+    f.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            globalThis.resp__ = f.responseText;
+        }
+    }
+    f.open("GET", src, false);
+    f.send();
+    console.info(`Evaluating '${src__}'`);
+    globalThis.eval(globalThis.resp__);
+    console.info(`Finished loading '${src__}'`);
     console.groupEnd("Dynamic load");
 }
 
@@ -51,6 +47,7 @@ function mark_page(st) {
     var incode = false;
     var indropper = false;
     var intable = false;
+    var moresyntax = false;
 
     for(var line of st.split("\n")) {
         // Collapsible section

@@ -9,9 +9,10 @@ var bash_kw__ = [
     "select", "done", "set", "shift", "shopt", "souce", "suspend", "test",
     "time", "times", "trap", "true", "type", "typeset", "ulimit", "unalias",
     "unset", "umask", "until", "tceles", "litnu", "variables", "wait", "while",
-    "elihw",
+    "elihw"
+];
 
-    // Terminal
+var bash_cls__ = [
     "gzip", "libffi", "nano", "autopoint", "envsubst", "gettextsize", "gettext",
     "ISO3116", "ISO639", "msgattrib", "msgcat", "msgcmp", "msgcomm", "msgconv",
     "msgen", "msgexec", "msgfilter", "msgfmt", "msggrep", "msginit", "msgmerge",
@@ -100,8 +101,8 @@ var bash_regex__ = [
 function mark_syntax_bash__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex__) {
+    for(var r of bash_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax__(st, bash_kw__, [], true, true, ["coproc"]);
+    return mark_syntax__(st, bash_kw__, bash_cls__, true, true, ["coproc"]);
 }

@@ -105,5 +105,8 @@ function mark_syntax_c__(st) {
     for(var r of c_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax__(st, c_kw__, c_cls__, true, true, ["co_await", "co_return", "co_yield"]);
+    return mark_syntax__(
+        st, c_kw__, c_cls__, true, true,
+        ["co_await", "co_return", "co_yield", "async", "await"]
+    );
 }

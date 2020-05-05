@@ -1,11 +1,11 @@
-var java_cls = [
+var java_cls__ = [
     "boolean", "byte", "char", "double", "float", "int", "interface", "long",
     "short", "void", "volatile", "String", "Scanner", "System", "ArrayList",
     "Math", "Boolean", "Byte", "Character", "Double", "Float", "Integer",
     "Long", "Short", "HashMap", "Object"
 ];
 
-var java_kw = [
+var java_kw__ = [
     "abstract", "assert", "break", "case", "catch", "class", "const", "continue",
     "default", "do", "else", "enum", "extends", "final", "finally", "for", "goto",
     "if", "implements", "import", "instanceof", "native", "new", "package",
@@ -14,19 +14,19 @@ var java_kw = [
     "while", "true", "false", "null"
 ];
 
-function java_str_regex(m, b, c) {
+function java_str_regex__(m, b, c) {
     var st = "";
     st = c.split('').join("\u200b");
     return `<span class="str">${b}${st}${b}</span>`;
 }
 
-var java_regex = [
+var java_regex__ = [
     [
         /(")(.*?[^\\\n]|)"/gm,
-        java_str_regex
+        java_str_regex__
     ], [
         /(')(\\?.?)'/gm,
-        java_str_regex
+        java_str_regex__
     ],
     ...std_escape__,
     [
@@ -64,8 +64,8 @@ var java_regex = [
 function mark_syntax_java__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of java_regex) {
+    for(var r of java_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax(st, java_kw, java_cls);
+    return mark_syntax__(st, java_kw__, java_cls__);
 }
