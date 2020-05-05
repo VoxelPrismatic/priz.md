@@ -152,7 +152,7 @@ function sel_cls_dropper_gt_tag_div__(style, color) {
 
 function cls_code__(style, color, bg) {
     bg = bg.replace(/1/gm, "0").replace(/2/gm, "1");
-    if(bg.length == 5)
+    if(bg.length == 4)
         bg += "6";
     else
         bg += "66";
