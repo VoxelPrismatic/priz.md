@@ -83,9 +83,10 @@ Just add the following line before the script to the `<head>` of your page, wher
 | `css` | `css`, `css3`, `lesscss`, `less`, `scss` |
 | `c` | `c`, `cpp`, `c++`, `obj-c`, `objective-c`, `c#`, `cs`, `c-sharp`, `arduino` |
 | `bash` | `bash` |
+| `kotlin` | `kotlin`, `kot`, `kt` |
 
-Or, you can *not* do that and just let the code figure it all out itself. Keep
-in mind that it may take longer to load, but idk.
+Or, you can *not* do that and just let the code figure it all out itself, you're
+welcome.
 
 ## #] Tips and tricks
 1. You can define your own `startLoading()` function so when the markdown loads,

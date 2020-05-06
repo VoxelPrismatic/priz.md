@@ -1,3 +1,12 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
 var base__ = base__.replace(/priz.md(-dev)?\//, "priz.md$1/out/"); // Works for the dev repo, and versions
 var head__ = document.getElementById("priz_importer");
 var meta__ = document.getElementById("priz_syntax");
