@@ -51,17 +51,13 @@ function set_regex__() {
             }
         ], [
             /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
-            function(m, p1, p2) {
-                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" width="${p3}" src="${esc(p2)}">`;
-            }
-        ], [
-            /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
             function(m, p1, p2, p3) {
-                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" src="${esc(p2)}">`;
+                var alt = esc(mark(p1).replace(/"/gm, "'"));
+                return `<img alt="${alt}" title="${alt}" width="${p3}" src="${esc(p2)}">`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>\((.*?)\)/gm,
-            function(m, p1, p2, p3, p3) {
+            function(m, p1, p2, p3) {
                 return `<a href="${esc(p2)}" title="${esc(p3)}" target='\\x5fblank'><span class='btn'>${esc(mark(p1))}</span></a>`;
             }
         ], [
@@ -78,6 +74,12 @@ function set_regex__() {
             /\[(.+?)\]\<(.+?)\>\((.*)\)/gm,
             function(m, p1, p2, p3) {
                 return `<a href="${esc(p2)}" title="${esc(p3)}">${esc(mark(p1))}</a>`;
+            }
+        ], [
+            /\@\[(.+?)\]<(.+?)>/gm,
+            function(m, p1, p2) {
+                var alt = esc(mark(p1).replace(/"/gm, "'"));
+                return `<img alt="${alt}" title="${alt}" src="${esc(p2)}">`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>/gm,
