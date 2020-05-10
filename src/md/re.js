@@ -47,17 +47,37 @@ function set_regex__() {
         ], [
             /\?\[(.+?)\]<(.+?)>/gm,
             function(m, p1, p2) {
-                return `<span title="${esc(p2)}" class="def">${esc(mark(p1))}</span>`;
+                return `<def title="${esc(p2)}">${esc(mark(p1))}</def>`;
+            }
+        ], [
+            /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
+            function(m, p1, p2) {
+                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" width="${p3}" src="${esc(p2)}">`;
             }
         ], [
             /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
             function(m, p1, p2, p3) {
-                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" width="${p3}" src="${esc(p2)}">`;
+                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" src="${esc(p2)}">`;
             }
         ], [
-            /\@\[(.+?)\]<(.+?)>/gm,
-            function(m, p1, p2) {
-                return `<img alt="${esc(mark(p1).replace(/"/gm, "'"))}" src="${esc(p2)}">`;
+            /\+\[\[(.+?)\]\]\<(.+?)\>\((.*?)\)/gm,
+            function(m, p1, p2, p3, p3) {
+                return `<a href="${esc(p2)}" title="${esc(p3)}" target='\\x5fblank'><span class='btn'>${esc(mark(p1))}</span></a>`;
+            }
+        ], [
+            /\+\[(.+?)\]\<(.+?)\>\((.*)\)/gm,
+            function(m, p1, p2, p3) {
+                return `<a href="${esc(p2)}" title="${esc(p3)}" target='\\x5fblank'>${esc(mark(p1))}</a>`;
+            }
+        ], [
+            /\[\[(.+?)\]\]\<(.+?)\>\((.*)\)/gm,
+            function(m, p1, p2, p3) {
+                return `<a href="${esc(p2)}" title="${esc(p3)}"><span class='btn'>${esc(mark(p1))}</span></a>`;
+            }
+        ], [
+            /\[(.+?)\]\<(.+?)\>\((.*)\)/gm,
+            function(m, p1, p2, p3) {
+                return `<a href="${esc(p2)}" title="${esc(p3)}">${esc(mark(p1))}</a>`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>/gm,
@@ -97,36 +117,37 @@ function set_regex__() {
         ],
 
         //Unicode Escape
-        [/^\\x([A-Fa-f0-9]{2})/gm, "\\u{$1}"],
-        [/^\\U([A-Fa-f0-9]{8})/gm, "\\u{$1}"],
-        [/^\\u([A-Fa-f0-9]{4})/gm, "\\u{$1}"],
-        [/^\\N\{(.+?)\}/gm, function(m, p) {return "\\u{"+unimap(p.toUpperCase())+"}";}],
-        [/([^\\])\\x([A-Fa-f0-9]{2})/gm, "$1\\u{$2}"],
-        [/([^\\])\\U([A-Fa-f0-9]{8})/gm, "$1\\u{$2}"],
-        [/([^\\])\\u([A-Fa-f0-9]{4})/gm, "$1\\u{$2}"],
-        [/([^\\])\\N\{(.+?)\}/gm, function(m, a, p) {return a+"\\u{"+unimap(p.toUpperCase())+"}";}],
-        [/\\([^u])/gm, function(m, p1) {return `\\u{${p1.charCodeAt(0).toString(16)}}`;}],
+        [/\\x([A-Fa-f0-9]{2})/gm, "\\u{$1}"],
+        [/\\U([A-Fa-f0-9]{8})/gm, "\\u{$1}"],
+        [/\\u([A-Fa-f0-9]{4})/gm, "\\u{$1}"],
+        [
+            /\\N\{(.+?)\}/gm,
+            function(m, p) {
+                load_unicode_index__();
+                return unimap(p, true);
+            }
+        ],
+        [/\\([^u])/gm, function(m, p1) {return `\\u{${p1}}`;}],
 
         //Headers
         [/^\#{1,6}\] +(.+)$/gm, mk_head__],
 
         //Main MD
-        [/^\#(.+?)\#/gm, "<b>$1</b>"],
-        [/^\*(.+?)\*/gm, "<i>$1</i>"],
-        [/^\_(.+?)\_/gm, "<u>$1</u>"],
-        [/^\~(.+?)\~/gm, "<s>$1</s>"],
-        [/^\`(.+?)\`/gm, function(m, p1) {return `<span class="code">${esc(p1)}</span>`}],
-        [/^\>\^(.+?)\^\</gm, "<sup>$1</sup>"],
-        [/^\>v(.+?)v\</gm, "<sub>$1</sub>"],
-        [/^\>\!(.+?)\!\</gm, `<span class="hide" onclick="this.classList.toggle('unhide');">$1</span>`],
-        [/([^\\])\#(.+?)\#/gm, "$1<b>$2</b>"],
-        [/([^\\])\*(.+?)\*/gm, "$1<i>$2</i>"],
-        [/([^\\])\_(.+?)\_/gm, "$1<u>$2</u>"],
-        [/([^\\])\~(.+?)\~/gm, "$1<s>$2</s>"],
-        [/([^\\])\`(.+?)\`/gm, function(m, p1, p2) {return `${p1}<span class="code">${esc(p2)}</span>`}],
-        [/([^\\])\>\^(.+?)\^\</gm, "$1<sup>$2</sup>"],
-        [/([^\\])\>v(.+?)v\</gm, "$1<sub>$2</sub>"],
-        [/([^\\])\>\!(.+?)\!\</gm, `$1<span class="hide" onclick="this.classList.toggle('unhide');">$2</span>`],
+        [/\#(.+?)\#/gm, "<b>$1</b>"],
+        [/\*(.+?)\*/gm, "<i>$1</i>"],
+        [/\_(.+?)\_/gm, "<u>$1</u>"],
+        [/\~(.+?)\~/gm, "<s>$1</s>"],
+        [/\`(.+?)\`/gm, function(m, p1) {return `<codeline>${esc(p1)}</codeline>`}],
+        [/\>\^(.+?)\^\</gm, "<sup>$1</sup>"],
+        [/\>v(.+?)v\</gm, "<sub>$1</sub>"],
+        [/\>\!(.+?)\!\</gm, `<spoil onclick="this.classList.toggle('unhide');">$1</spoil>`],
+        [
+            /\>\:(.+?)\:\</gm,
+            function(m, p) {
+                load_unicode_index__();
+                return "\\u{" + unimap(p.replace(/_/gm, " ")) + "}";
+            }
+        ],
 
         //Alignment
         [
@@ -137,22 +158,23 @@ function set_regex__() {
             "<div style='float: right;'>$2</div>" +
             "</div></br>"
         ],
-        [/^\:\<\:(.+)/gm, "<div style='text-align: left;'>$1</div>"],
-        [/^\:\>\:(.+)/gm, "<div style='text-align: right;'>$1</div>"],
-        [/^\:v\:(.+)/gm, "<div style='text-align: center;'>$1</div>"],
-        [/^\:=\:(.+)/gm, "<div style='text-align: justified;'>$1</div>"],
+        [/^\:\<\:(.+)/gm, "<align-left>$1</align-left>"],
+        [/^\:\>\:(.+)/gm, "<align-right>$1</align-right>"],
+        [/^\:v\:(.+)/gm, "<align-mid>$1</align-mid>"],
+        [/^\:=\:(.+)/gm, "<align-just>$1</align-just>"],
 
         //Others
         [/\{\{(\w+?)\}\}(.+?) /gm, "<span class='$1'>$2 </span>"],
         [/^--([\w\d_.-]+)--$/gm, "<div id='$1'></div></br>"],
         [/\\ *$/gm, "</br>"], //New line escape
-        [/^-~-$/gm, "<div class='line'></div></br>"],
+        [/^-~-$/gm, "<line></line></br>"],
         [/(<u>_<\/u>|___)/gm, "<div>"],
         [/===/gm, "</div>"],
         [
             /(.)\$(.+?)\;/gm,
             function(m, p2, p1) {
                 var accent = accents[p1] || "";
+                // Hide the dot
                 if(p2 == "i")
                     p2 = "ı";
                 if(p2 == "j")
@@ -164,7 +186,7 @@ function set_regex__() {
         [
             /\\u\{([a-fA-F0-9]+)\}/gm,
             function(m, p1) {
-                var st = String.fromCharCode("0x" + p1);
+                var st = chr(p1);
                 if(st == "<")
                     return "&lt;"
                 if(st == ">")

@@ -129,11 +129,14 @@ for file in files:
     st = st.replace("/prizm.dev/assets/css", ".")
     open(file, "w").write(st)
 
+os.system("sudo echo *now running")
 os.system("sudo lessc ./src/css/style.less ./src/css/style.css")
 
 print("Generating style.min.css")
-mincss = open("src/css/style.css").read()
 
+mincss = open("src/css/style.css").read()
+mincss = header + re.sub(r"\/\*(.|\n)*?\*\/", "", mincss)
+open("src/css/style.css", "w").write(mincss)
 
 for r, s in repl_css:
     mincss_ = ""
@@ -146,12 +149,15 @@ open("out/style.min.css", "w+").write(mincss)
 
 styles = [
     ".btn"
-    ".hide",
+    "spoil",
     ".unhide",
-    ".code",
+    "codeblock",
+    "codeline"
     ".dict",
-    ".line",
-    ".def",
+    "line",
+    "def",
+    "align",
+    "al"
 ]
 
 print("Generating style.lite.min.css")
