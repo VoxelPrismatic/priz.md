@@ -16,7 +16,7 @@ function resizeDicts(log = true, element = document) {
         console.log("Resizing elements");
     }
     var tooSmol = false;
-    for(var thing of find_in(element, ".dict")) {
+    for(var thing of find_in(element, ">dict")) {
         var parent = thing.parentElement;
         if(parent.clientWidth == 0) {
             continue;
@@ -26,14 +26,11 @@ function resizeDicts(log = true, element = document) {
         var style = thing.style;
         thisWidth -= thing.nextElementSibling.clientWidth;
         thisWidth -= thing.previousElementSibling.clientWidth;
+        style.transition = "none";
         style.width = (thisWidth - 10) + "px";
-        style.marginLeft = "5px";
-        style.marginRight = "5px";
-        style.height = "2px";
         style.lineHeight = height + "px";
-        style.display = "inline-block";
-        style.borderColor = "#444f";
         style.top = "";
+        thing.classList.remove("smol-dict");
         if(thisWidth < 100) {
             tooSmol = true;
         }
@@ -42,14 +39,13 @@ function resizeDicts(log = true, element = document) {
         var func = dictsPerfect;
     }
     if(tooSmol) {
-        for(var thing of find(".dict")) {
+        for(var thing of find(">dict")) {
             var parent = thing.parentElement;
             var width = parent.clientWidth - 5;
+            thing.classList.add("smol-dict");
             thing.style.top = (height + 10) + "px";
             thing.parentElement.style.minHeight = (2 * height + 20) + "px";
             thing.parentElement.style.height = (2 * height + 20) + "px";
-            thing.style.width = width + "px";
-            thing.style.margin = "auto";
         }
         var func = dictsTooSmol;
     }
@@ -58,7 +54,7 @@ function resizeDicts(log = true, element = document) {
 }
 
 function dictsTooSmol() {
-    for(var thing of find(".dict")) {
+    for(var thing of find(">dict")) {
         var parent = thing.parentElement;
         var width = parent.clientWidth - 5;
         thing.style.width = width + "px";
@@ -66,7 +62,7 @@ function dictsTooSmol() {
 }
 
 function dictsPerfect() {
-    for(var thing of find(".dict")) {
+    for(var thing of find(">dict")) {
         var parent = thing.parentElement;
         var width = parent.clientWidth - 5;
         var thisWidth = width;

@@ -37,7 +37,7 @@ if(iframe_md__ && !meta__) {
     script__.type = "text/javascript";
     script__.onload = function() {
         console.log("Ready to interpret markdown");
-        window.onresize = sub_styles();
+        window.onresize = function() {sub_styles(false)};
         try {
             startLoading();
         } catch(err) {

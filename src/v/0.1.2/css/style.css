@@ -189,21 +189,27 @@ codeline {
   font-size: smaller;
   display: inline-block;
 }
-align-left {
+a-l {
   display: block;
   text-align: left;
 }
-align-right {
+a-r {
   display: block;
   text-align: right;
 }
-align-mid {
+a-c {
   display: block;
   text-align: center;
 }
-align-just {
+a-j {
   display: block;
   text-align: justified;
+}
+f-l {
+  float: left;
+}
+f-r {
+  float: right;
 }
 line {
   height: 5px;
@@ -711,11 +717,17 @@ h6:focus {
 dict {
   display: inline-block;
   width: 0px;
-  border: 2px solid #444444;
+  border: 2px solid #444f;
   border-radius: 2px;
-  height: 0px !important;
+  height: 2px !important;
   position: relative;
   top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: none !important;
+}
+.smol-dict {
+  margin: auto;
 }
 .tr-l {
   border-right-color: #0000;

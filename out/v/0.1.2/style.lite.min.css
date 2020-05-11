@@ -6,17 +6,13 @@
  * opensource. No warranty is provided.                       *
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
- * it, but all projects modifying it must also remain         *
-al{display:block;list-style-type:lower-alpha;margin-top:1em;margin-bottom:1em;margin-left:0;margin-right:0;padding-left:40px;}
-ol,ul,al{margin:0px;padding-top:0px;}
-ul > li::marker,ol > li::marker,al > li::marker{font-family:"Ubuntu Mono",mono;color:#8888;}
 codeblock,codeline{border:2px solid;border-bottom-color:#00000000;border-right-color:#334444;border-left-color:#334444;border-top-color:#334444;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaaaaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre-wrap;display:block;}
 codeblock *,codeline *{font-family:"Ubuntu Mono",mono;}
 codeline{margin:2px;padding:2px;font-size:smaller;display:inline-block;}
-align-left{display:block;text-align:left;}
-align-right{display:block;text-align:right;}
-align-mid{display:block;text-align:center;}
-align-just{display:block;text-align:justified;}
+a-l{display:block;text-align:left;}
+a-r{display:block;text-align:right;}
+a-c{display:block;text-align:center;}
+a-j{display:block;text-align:justified;}
 line{height:5px;border:2px solid #00ffff;border-radius:5px;width:80%;margin:auto;box-shadow:0px 0px 5px #00ffff,inset 0px 0px 5px #00ffff;display:block;}
 line:hover,line:focus{box-shadow:0px 0px 10px #00ffff,inset 0px 0px 10px #00ffff;}
 .unhide{color:#fff !important;}

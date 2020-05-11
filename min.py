@@ -174,9 +174,10 @@ styles = [
     ".dict",
     "line",
     "def",
-    "align",
+    "a-",
+    "f-"
     "al"
-]
+];
 
 print("Generating style.lite.min.css")
 

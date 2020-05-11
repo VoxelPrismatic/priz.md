@@ -32,10 +32,12 @@ spoil:hover,spoil:focus{color:#ffffff;}
 codeblock,codeline{border:2px solid;border-bottom-color:#00000000;border-right-color:#334444;border-left-color:#334444;border-top-color:#334444;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaaaaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre-wrap;display:block;}
 codeblock *,codeline *{font-family:"Ubuntu Mono",mono;}
 codeline{margin:2px;padding:2px;font-size:smaller;display:inline-block;}
-align-left{display:block;text-align:left;}
-align-right{display:block;text-align:right;}
-align-mid{display:block;text-align:center;}
-align-just{display:block;text-align:justified;}
+a-l{display:block;text-align:left;}
+a-r{display:block;text-align:right;}
+a-c{display:block;text-align:center;}
+a-j{display:block;text-align:justified;}
+f-l{float:left;}
+f-r{float:right;}
 line{height:5px;border:2px solid #00ffff;border-radius:5px;width:80%;margin:auto;box-shadow:0px 0px 5px #00ffff,inset 0px 0px 5px #00ffff;display:block;}
 line:hover,line:focus{box-shadow:0px 0px 10px #00ffff,inset 0px 0px 10px #00ffff;}
 #footer{font-size:x-small;}
@@ -91,7 +93,8 @@ h6:hover,h6:focus{text-shadow:0px 0px 10px;}
 .sect{border:2px solid;border-bottom-color:#00000000;border-right-color:#00ffff;border-left-color:#00ffff;border-top-color:#00ffff;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;margin:5px;padding:5px;margin-left:auto;margin-right:auto;margin-bottom:5px;margin-top:5px;text-align:justify;padding:10px;}
 .btn{color:#0088ff;background-color:rgba(0,136,255,0.26667);caret-color:#80c4ff;border:2px solid;border-bottom-color:#00000000;border-right-color:#0088ff;border-left-color:#0088ff;border-top-color:#0088ff;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;margin:5px;padding:5px;margin:2px;padding:2px;}
 .btn:hover,.btn:focus{color:#00ffff;background-color:rgba(0,255,255,0.26667);caret-color:#80ffff;border:2px solid;border-bottom-color:#00000000;border-right-color:#00ffff;border-left-color:#00ffff;border-top-color:#00ffff;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;margin:5px;padding:5px;margin:2px;padding:2px;}
-dict{display:inline-block;width:0px;border:2px solid #444444;border-radius:2px;height:0px !important;position:relative;top:10px;}
+dict{display:inline-block;width:0px;border:2px solid #444f;border-radius:2px;height:2px !important;position:relative;top:10px;margin-left:5px;margin-right:5px;transition:none !important;}
+.smol-dict{margin:auto;}
 .tr-l{border-right-color:#0000;}
 .tr-r{border-left-color:#0000;}
 @media only screen and(min-width:240px){.sect,.tab{width:95vw;}

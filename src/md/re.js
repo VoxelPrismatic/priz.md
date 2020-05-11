@@ -155,15 +155,15 @@ function set_regex__() {
         [
             /(.*)\:\^\:(.*)/gm,
             "<div style='height: 24px;'>" +
-            "<align-left>$1</align-left>" +
-            "<div class='dict'></div>" +
-            "<align-right>$2</align-right>" +
+            "<f-l>$1</f-l>" +
+            "<dict></dict>" +
+            "<f-r>$2</f-r>" +
             "</div></br>"
         ],
-        [/^\:\<\:(.+)/gm, "<align-left>$1</align-left>"],
-        [/^\:\>\:(.+)/gm, "<align-right>$1</align-right>"],
-        [/^\:v\:(.+)/gm, "<align-mid>$1</align-mid>"],
-        [/^\:=\:(.+)/gm, "<align-just>$1</align-just>"],
+        [/^\:\<\:(.+)/gm, "<a-l>$1</a-l>"],
+        [/^\:\>\:(.+)/gm, "<a-r>$1</a-r>"],
+        [/^\:v\:(.+)/gm, "<a-c>$1</a-c>"],
+        [/^\:=\:(.+)/gm, "<a-j>$1</a-j>"],
 
         //Others
         [/\{\{(\w+?)\}\}(.+?) /gm, "<span class='$1'>$2 </span>"],

@@ -43,6 +43,7 @@ function mark_page(st) {
 
     for(var line of st.split("\n")) {
         // Collapsible section
+        console.log(line, "\n", incode, "\n", recur__.length)
         if(!incode && line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "")
             indropper = true;
         if(!incode && line == "---" && indropper) {
@@ -52,6 +53,9 @@ function mark_page(st) {
             continue;
         }
         if(indropper) {
+            if(line.match(/^\`\`\`(\w+)?/gm)) {
+                incode = !incode;
+            }
             dropper += line + "\n";
             continue;
         }
