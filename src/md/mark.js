@@ -43,8 +43,7 @@ function mark_page(st) {
 
     for(var line of st.split("\n")) {
         // Collapsible section
-        console.log(line, "\n", incode, "\n", recur__.length)
-        if(!incode && line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "")
+\        if(!incode && line && line.replace(/^\>\>\[.*\]\<\<$/gm, "") == "")
             indropper = true;
         if(!incode && line == "---" && indropper) {
             indropper = false;
