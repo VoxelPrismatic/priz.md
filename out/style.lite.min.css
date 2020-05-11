@@ -10,9 +10,9 @@
 al{display:block;list-style-type:lower-alpha;margin-top:1em;margin-bottom:1em;margin-left:0;margin-right:0;padding-left:40px;}
 ol,ul,al{margin:0px;padding-top:0px;}
 ul > li::marker,ol > li::marker,al > li::marker{font-family:"Ubuntu Mono",mono;color:#8888;}
-codeblock,codeline{border:2px solid;border-bottom-color:#00000000;border-right-color:#334444;border-left-color:#334444;border-top-color:#334444;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaaaaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre-wrap;}
+codeblock,codeline{border:2px solid;border-bottom-color:#00000000;border-right-color:#334444;border-left-color:#334444;border-top-color:#334444;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaaaaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre-wrap;display:block;}
 codeblock *,codeline *{font-family:"Ubuntu Mono",mono;}
-codeline{margin:2px;padding:2px;font-size:smaller;}
+codeline{margin:2px;padding:2px;font-size:smaller;display:inline-block;}
 align-left{display:block;text-align:left;}
 align-right{display:block;text-align:right;}
 align-mid{display:block;text-align:center;}

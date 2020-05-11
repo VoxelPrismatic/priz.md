@@ -62,7 +62,7 @@ function mark_page(st) {
             if(incode) {
                 syntax = line.slice(3).trim();
             } else {
-                str += `<div class="code">`;
+                str += `<codeblock>`;
                 if(syntax) {
                     try {
                         try {
@@ -95,7 +95,7 @@ function mark_page(st) {
                 } else {
                     str += code;
                 }
-                str += "</div>";
+                str += "</codeblock>";
                 code = "";
                 syntax = "";
             }

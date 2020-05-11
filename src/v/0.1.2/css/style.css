@@ -177,6 +177,7 @@ codeline {
   font-family: "Ubuntu Mono", mono;
   cursor: auto;
   white-space: pre-wrap;
+  display: block;
 }
 codeblock *,
 codeline * {
@@ -186,6 +187,7 @@ codeline {
   margin: 2px;
   padding: 2px;
   font-size: smaller;
+  display: inline-block;
 }
 align-left {
   display: block;
