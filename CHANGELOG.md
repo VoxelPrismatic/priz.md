@@ -9,9 +9,13 @@ to *all* those releases.
 
 ## #] v0.1.2
 \> New syntax highlighting
-\> Possible emoji support [still testing that]
+\> Emoji support!
 \> Condenced the main RegEx file to remove unnecessary/redundant replacements
-\> Added new styles like `<spoil>`
+\> Added new styles like `<spoil>` and `<line>` to clean up HTML
+#### #] Bug fixes
+\> Fixed the loading unicode issue
+\> Fixed compression issue where `;` and `,` would show up on new lines
+\> Fixed compression issue where multiple new lines would show up for no reason
 
 ## #] v0.1.1
 \> Added `Kotlin` to syntax highlighting
