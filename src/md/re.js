@@ -47,7 +47,7 @@ function set_regex__() {
         ], [
             /\?\[(.+?)\]<(.+?)>/gm,
             function(m, p1, p2) {
-                return `<def title="${esc(p2)}">${esc(mark(p1))}</def>`;
+                return `<def title="${esc(p2)}">${mark(p1)}</def>`;
             }
         ], [
             /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
@@ -147,7 +147,7 @@ function set_regex__() {
             /\>\:(.+?)\:\</gm,
             function(m, p) {
                 load_unicode_index__();
-                return "\\u{" + unimap(p.replace(/_/gm, " ")) + "}";
+                return unimap(p.replace(/_/gm, " "), true);
             }
         ],
 
@@ -155,9 +155,9 @@ function set_regex__() {
         [
             /(.*)\:\^\:(.*)/gm,
             "<div style='height: 24px;'>" +
-            "<div style='float: left;'>$1</div>" +
-            "<div class='dict'></div>" +
-            "<div style='float: right;'>$2</div>" +
+            "<align-left>$1</div>" +
+            "<div id='dict'></div>" +
+            "<align-right>$2</align-right>>" +
             "</div></br>"
         ],
         [/^\:\<\:(.+)/gm, "<align-left>$1</align-left>"],
@@ -181,7 +181,7 @@ function set_regex__() {
                     p2 = "ı";
                 if(p2 == "j")
                     p2 = "ȷ";
-                return `<span>${p2}</span><span class="accent">${accent}</span>`;
+                return `<span>${p2}</span><accent>${accent}</accent>`;
             }
         ],
 

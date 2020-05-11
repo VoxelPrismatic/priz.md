@@ -8,7 +8,7 @@
  * ---------------------------------------------------------- */
 
 function style_accents() {
-    for(var acc of find(".accent")) {
+    for(var acc of find(">accent")) {
         var char = acc.previousElementSibling;
         char.style.display = "inline-block";
         acc.style.position = "relative";

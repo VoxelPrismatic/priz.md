@@ -35,6 +35,10 @@ function unimap(st, esc = false) {
         if(esc) {
             return "\\u{" + char + "}";
         }
-        return eval(`"\\u{${char}}"`);
+        try {
+            return eval(`"\\u{${char}}"`);
+        } catch(err) {
+            return st;
+        }
     }
 }

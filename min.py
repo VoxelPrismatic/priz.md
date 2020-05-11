@@ -30,14 +30,27 @@ def grab_dirs(root, end = ".js"):
         root += "/"
     if root.endswith("v/"):
         return
-    for file in os.listdir(root):
-        if file.endswith(end):
-            files.append(root + file)
-        else:
-            try:
-                grab_dirs(root + file)
-            except:
-                pass
+    end = end.strip()
+    ls = os.listdir(root)
+    for file in ls:
+        try:
+            grab_dirs(root + file, end)
+        except:
+            if file.endswith(end):
+                files.append(root + file)
+
+def mktree(folder):
+    folder = "./" + folder
+    while folder and not folder.endswith("/"):
+        folder = folder[:-1]
+    st = ""
+    folder = folder[:-1]
+    for thing in folder.split("/"):
+        st += thing + "/"
+        try:
+            os.mkdir(st)
+        except:
+            pass
 
 grab_dirs("src/md")
 
@@ -54,6 +67,9 @@ repl_js = [
     #[r"\}, \{", r"},\n{"],
     [r'" *\+ *\n"', r''],
     [r"' *\+ *\n'", r""],
+    [r"\n *;", r";\n"],
+    [r"\n *,", r",\n"],
+    [r"\n\n+", r"\n"]
 ]
 
 repl_ttl = [
@@ -62,6 +78,7 @@ repl_ttl = [
     [r"( *\n *)+", r"\n"],
     [r"([\}\]\)])\n(.?)([\}\]\),])", r"\1\2\3"],
     [r"/\*(.|\n)*?\*/", ""],
+    [r"\n\n+", r"\n"]
 ]
 
 repl_css = [
@@ -73,6 +90,7 @@ repl_css = [
     [r" *([\{\(]) *", r"\1"],
     [r" *\n+ *", r"\n"],
     [r"/\*(.|\n)*?\*/", ""],
+    [r"\n\n+", r"\n"]
 ]
 
 for file in files:
@@ -171,3 +189,19 @@ for line in mincss.split("\n"):
             break
 
 open("out/style.lite.min.css", "w+").write(litecss)
+
+v = input("Release # ] ")
+
+files = []
+grab_dirs("src/", " ")
+vv = " src/v/" + v + "/"
+for file in files:
+    mktree(vv[1:] + file[4:])
+    os.system("cp " + file + vv + file[4:])
+
+files = []
+grab_dirs("out/", " ")
+vv = " out/v/" + v + "/"
+for file in files:
+    mktree(vv[1:] + file[4:])
+    os.system("cp " + file + vv + file[4:])
