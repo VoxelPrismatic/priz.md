@@ -14,25 +14,24 @@ function fetch_content__(src, strip = false, json = false, list = false, script 
             globalThis.resp__ = f.responseText;
         }
     }
-    f.open("GET", src, {async: false});
+    f.open("GET", src, false);
     f.send();
-    content = globalThis.resp__
     if(strip || list || json || script) {
         console.log("Trimming content");
-        content = content.trim();
+        resp__ = resp__.trim();
     } if(json) {
         console.log("Parsing JSON");
-        content = JSON.parse(content.replace(/\\\n/gm, "\\n"));
+        resp__ = JSON.parse(resp__.replace(/\\\n/gm, "\\n"));
     } else if(list) {
         console.log("Splitting list");
-        content = content.split("\n");
+        resp__ = resp__.split("\n");
     } else if(script) {
         console.info(`Evaluating '${src__}'`);
-        globalThis.eval(content);
+        globalThis.eval(resp__);
     }
     console.info(`Finished loading '${src__}'`);
     console.groupEnd("Dynamic load");
-    return content;
+    return resp__;
 }
 
 function fetch_script__(src) {
