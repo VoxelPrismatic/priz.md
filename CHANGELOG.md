@@ -16,6 +16,7 @@ to *all* those releases.
 \> Fixed the loading unicode issue
 \> Fixed compression issue where `;` and `,` would show up on new lines
 \> Fixed compression issue where multiple new lines would show up for no reason
+\> QUICK FIX: Alignment would break sections
 
 ## #] v0.1.1
 \> Added `Kotlin` to syntax highlighting

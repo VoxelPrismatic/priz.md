@@ -155,9 +155,9 @@ function set_regex__() {
         [
             /(.*)\:\^\:(.*)/gm,
             "<div style='height: 24px;'>" +
-            "<align-left>$1</div>" +
-            "<div id='dict'></div>" +
-            "<align-right>$2</align-right>>" +
+            "<align-left>$1</align-left>" +
+            "<div class='dict'></div>" +
+            "<align-right>$2</align-right>" +
             "</div></br>"
         ],
         [/^\:\<\:(.+)/gm, "<align-left>$1</align-left>"],
