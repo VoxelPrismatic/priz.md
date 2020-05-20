@@ -5,7 +5,7 @@
 # it, but all projects modifying it must also remain
 # opensource. No warranty is provided.
 # For more info go to https://tiny.cc/priz-md/
-#-----------------------------------------------------------
+# ----------------------------------------------------------
 
 import os
 import re
@@ -170,13 +170,15 @@ styles = [
     "spoil",
     ".unhide",
     "codeblock",
-    "codeline"
+    "codeline",
     ".dict",
     "line",
     "def",
     "a-",
     "f-"
-    "al"
+    "al",
+    "accent",
+    "emoji"
 ];
 
 print("Generating style.lite.min.css")
@@ -191,7 +193,9 @@ for line in mincss.split("\n"):
 
 open("out/style.lite.min.css", "w+").write(litecss)
 
-v = input("Release # ] ")
+v = "cd"
+while "cd" in v:
+    v = input("Release # ] ")
 
 files = []
 grab_dirs("src/", " ")

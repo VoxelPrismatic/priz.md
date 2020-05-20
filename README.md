@@ -54,12 +54,18 @@ If you don't want to recreate those, then use `markup.lite.js` or `iframe.lite.j
 | Style | Purpose |
 | - | - |
 | `.btn` | A button that isn't |
-| `.hide` | A spoiler |
-| `.unhide` | Unspoils `.hide` |
-| `.code` | A code block |
+| `soil` | A spoiler |
+| `.unhide` | Unspoils `spoil` |
+| `codeblock` | A code block |
+| `codeline` | Same thing as `codeblock` but displays as `inline` and the font is smaller |
 | `.dict` | Just a line between a key and a value |
-| `.line` | A section seperator |
-| `.def` | Not that important but is useful for accessibility |
+| `line` | A section seperator |
+| `def` | Not that important but is useful for accessibility |
+| `a-l`, `a-r`, `a-c`, `a-j` | Align left, right, center, and justified respectively |
+| `f-l`, `f-r` | Floats left and right, respectively |
+| `al` | Same thing as `ol` or `ul`, but uses `lower-alpha` as it's type |
+| `accent` | Allows accents to have a relative position |
+| `emoji` | Makes twemojis smaller and inline |
 
 ## #] Features / bug fixes
 You can always ask for new features or bring light on bug fixes in the issues tab.
@@ -77,13 +83,16 @@ Just add the following line before the script to the `<head>` of your page, wher
 | Language [`<languages>`] | Aliases |
 | -:|:- |
 | `py` | `py`, `py2`, `py3`, `python`, `python2`, `python3` |
-| `js` | `js`, `javascript`, `ecma`, `ecmascript`, `node`, `nodejs` |
+| `js` | `js`, `javascript`, `node`, `nodejs`, `ecma`, `ecmascript`, `es`, `es1`, \
+`es2`, `es3`, `es4`, `es5`, `es6` |
+| `ts` | `ts`, `typescript` |
 | `java` | `java`, `jvm`, `jre` |
-| `html` | `html`, `htm`, `html4`, `html5`, `xhtml`, `khtml`, `xml` |
+| `html` | `htm`, `html4`, `html5`, `xml`, `khtml`, `xhtml` |
 | `css` | `css`, `css3`, `lesscss`, `less`, `scss` |
 | `c` | `c`, `cpp`, `c++`, `obj-c`, `objective-c`, `c#`, `cs`, `c-sharp`, `arduino` |
-| `bash` | `bash` |
+| `bash` | `bash`, `osx`, `macos` |
 | `kotlin` | `kotlin`, `kot`, `kt` |
+| `cmd` | `cmd` |
 
 Or, you can *not* do that and just let the code figure it all out itself, you're
 welcome.

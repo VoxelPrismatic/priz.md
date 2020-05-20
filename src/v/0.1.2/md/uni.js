@@ -29,7 +29,7 @@ function unimap(st, esc = false) {
     try {
         var char = emj_index__[st.toUpperCase()];
         var raw = eval(`"\\u{${char}}"`);
-        return `<img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/${char}.svg" class="emoji" alt="${raw}">`;
+        return `<img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/${char.toLowerCase()}.svg" class="emoji" alt="${raw}">`;
     } catch(err) {
         char = uni_index__[st.toUpperCase()];
         if(esc) {
