@@ -115,15 +115,13 @@ function mark_page(st) {
         }
 
         //Table
-        if(line && line.replace(/^(\|.+)+\|$/gm, "") == "" && !table)
-            intable = true;
-        if((line == "---" || line == "" || line.replace(/^(\|.+)+\|$/gm, "") != "") && table) {
-            str += mk_table__(table).replace(/\n/gm, "<br>");
-            table = "";
-        }
-        if(table) {
+        if(line && line.replace(/^(\|.+)+\|$/gm, "") == "") {
             table += line + "\n";
             continue;
+        }
+        if(table) {
+            str += mk_table__(table).replace(/\n/gm, "<br>");
+            table = "";
         }
 
         // Ordered list [Numbers]
