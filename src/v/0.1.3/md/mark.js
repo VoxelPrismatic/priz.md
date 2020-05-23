@@ -46,7 +46,7 @@ function mark_page(st) {
             dropper += line.slice(4) + "\n";
             continue;
         }
-        if(dropper && line.startsWith("| ")) {
+        if(dropper && (line.startsWith("| ") || line.startsWith("|-"))) {
             dropper += line.slice(2) + "\n";
             continue;
         }

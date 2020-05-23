@@ -172,6 +172,7 @@ function set_regex__() {
         [/\*(.+?)\*/gm, "<i>$1</i>"],
         [/\_(.+?)\_/gm, "<u>$1</u>"],
         [/\~(.+?)\~/gm, "<s>$1</s>"],
+        [/\!\`(.+?)\`/gm, function(m, p1) {return `<codeline>${p1}</codeline>`}],
         [/\`(.+?)\`/gm, function(m, p1) {return `<codeline>${esc(p1)}</codeline>`}],
         [/\>\^(.+?)\^\</gm, "<sup>$1</sup>"],
         [/\>v(.+?)v\</gm, "<sub>$1</sub>"],

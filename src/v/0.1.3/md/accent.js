@@ -45,9 +45,9 @@ var accents = {
     "+>.": "\u0358",         // Overdot right
 
     "+u": "\u0306",          // Breve
-    "+<u": "\u0311",         // Inverted breve
+    "+^u": "\u0311",         // Inverted breve
     "-u": "\u032e",          // Breve below
-    "-<u": "\u032f",         // Inverted breve below
+    "-^u": "\u032f",         // Inverted breve below
     "2-u": "\u035c",         // Wide breve below
     "2+u": "\u035d",         // Wide breve
     "2+<u": "\u0361",        // Wide inverted breve
