@@ -739,6 +739,7 @@ dict {
   position: relative;
   top: 10px;
   transition: none !important;
+  margin: 0px 5px;
 }
 .smol-dict {
   margin: auto;

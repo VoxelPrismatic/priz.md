@@ -96,7 +96,7 @@ h6:hover,h6:focus{text-shadow:0px 0px 10px;}
 .btn{color:#08f;background-color:rgba(0,136,255,0.26667);caret-color:#80c4ff;border:2px solid;border-bottom-color:#0000;border-right-color:#08f;border-left-color:#08f;border-top-color:#08f;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;margin:5px;padding:5px;margin:2px;padding:2px;}
 .btn:hover,.btn:focus{color:#0ff;background-color:rgba(0,255,255,0.26667);caret-color:#80ffff;border:2px solid;border-bottom-color:#0000;border-right-color:#0ff;border-left-color:#0ff;border-top-color:#0ff;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;margin:5px;padding:5px;margin:2px;padding:2px;}
 .dropped{border-left:2px solid #8884;margin-left:2px;padding-left:4px;}
-dict{display:inline-block;width:0px;border:2px solid #444f;border-radius:2px;height:0px !important;position:relative;top:10px;transition:none !important;}
+dict{display:inline-block;width:0px;border:2px solid #444f;border-radius:2px;height:0px !important;position:relative;top:10px;transition:none !important;margin:0px 5px;}
 .smol-dict{margin:auto;}
 .tr-l{border-right-color:#0000;border-right-width:0px;}
 .tr-r{border-left-color:#0000;border-left-width:0px;}
