@@ -100,25 +100,25 @@ dict{display:inline-block;width:0px;border:2px solid #444f;border-radius:2px;hei
 .smol-dict{margin:auto;}
 .tr-l{border-right-color:#0000;border-right-width:0px;}
 .tr-r{border-left-color:#0000;border-left-width:0px;}
-@media only screen and(min-width:240px){.sect,.tab{width:95vw;}
+@media only screen and (min-width:240px){.sect,.tab{width:95vw;}
 img{max-width:95vw;}}
-@media only screen and(min-width:480px){.sect,.tab{width:90vw;}
+@media only screen and (min-width:480px){.sect,.tab{width:90vw;}
 img{max-width:90vw;}}
-@media only screen and(min-width:640px){.sect,.tab{width:80vw;}
+@media only screen and (min-width:640px){.sect,.tab{width:80vw;}
 img{max-width:80vw;}}
-@media only screen and(min-width:720px){.sect,.tab{width:70vw;}
+@media only screen and (min-width:720px){.sect,.tab{width:70vw;}
 img{max-width:70vw;}}
-@media only screen and(min-width:1000px){.sect,.tab{width:60vw;}
+@media only screen and (min-width:1000px){.sect,.tab{width:60vw;}
 img{max-width:60vw;}}
-@media only screen and(min-width:1080px){.sect,.tab{width:50vw;}
+@media only screen and (min-width:1080px){.sect,.tab{width:50vw;}
 img{max-width:50vw;}}
-@media only screen and(min-width:1280px){.sect,.tab{width:45vw;}
+@media only screen and (min-width:1280px){.sect,.tab{width:45vw;}
 img{max-width:45vw;}}
-@media only screen and(min-width:1366px){.sect,.tab{width:40vw;}
+@media only screen and (min-width:1366px){.sect,.tab{width:40vw;}
 img{max-width:40vw;}}
-@media only screen and(min-width:1600px){.sect,.tab{width:35vw;}
+@media only screen and (min-width:1600px){.sect,.tab{width:35vw;}
 img{max-width:35vw;}}
-@media only screen and(min-width:1920px){.sect,.tab{width:30vw;}
+@media only screen and (min-width:1920px){.sect,.tab{width:30vw;}
 img{max-width:30vw;}}
 *:focus,*:hover{outline:none;}
 .focusing{outline:currentcolor thin dotted;}
