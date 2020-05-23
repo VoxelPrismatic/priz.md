@@ -41,7 +41,7 @@ function mark_page(st) {
 
     for(var line of st.split("\n")) {
         // Collapsible section
-        if(line.startsWith("[>] ")) {
+        if(line.startsWith("[>] ") && !incode) {
             indropper = true;
             dropper += line.slice(4) + "\n";
             continue;

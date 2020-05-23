@@ -8,6 +8,8 @@ make any breaking changes anyway.
 
 [v0.1.3](#-013) | [v0.1.2](#-v012) | [v0.1.1](#-v011) | [v0.1.0](#-v010)
 
+---
+
 ## #] v0.1.3
 
 \> Updated RegEx
@@ -22,6 +24,18 @@ make any breaking changes anyway.
 
 \> The collapsible section uses a different syntax that makes more sense and
 does less breaking
+
+#### #] Bug fixes
+
+\> Fixed a bug where tables wouldn't actually render
+
+\> Fixed a bug where collapsed sections in code blocks would render the section
+first
+
+\> Fixed a bug where tables would have poorly rounded corners and missing/extra
+thick borders
+
+---
 
 ## #] v0.1.2
 
@@ -45,6 +59,8 @@ does less breaking
 
 \> Fixed a bug where twemojis wouldn't actually render
 
+---
+
 ## #] v0.1.1
 
 \> Added `Kotlin` to syntax highlighting
@@ -52,6 +68,8 @@ does less breaking
 \> Updated syntax highlighting to support more styles
 
 \> Now under GPLv2 ;]
+
+---
 
 ## #] v0.1.0
 

@@ -7,22 +7,11 @@
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
 
-var md_regex__ = [
-    [
-        /\#(.*)/gm,
-        `<b><span class="str">#$1</span></b>`
-    ], [
-        /\[(.*?)\]([\[\(])(.*?)([\]\)])/gm,
-        `[<span class="kw">$1</span>]$2<span class="str">$3</span>$4`
-    ], [
-    ]
-];
+/* NOTICE --------------------------------------------------- *
+ * This file only exists to prevent breaking changes from     *
+ * breaking external code sources. This file [so far] only    *
+ * contains removed functions. As such, this file shouldn't   *
+ * be modified unless something is removed.                   *
+ * ---------------------------------------------------------- */
 
-function mark_syntax_md__(st) {
-    st = st.replace(/\n/gm, " \n");
-    st = "\u200b" + st + "\n";
-    for(var r of css_regex__) {
-        st = st.replace(r[0], r[1]);
-    }
-    return mark_syntax__(st, [], [], [], [], false, false);
-}
+var styleTables = (...resid) => {};

@@ -24,8 +24,8 @@
 } textarea {
     .section(#233);
     color: #fff;
-    min-width: 98%;
-    max-width: 98%;
+    margin: 5px 0px;
+    .force-width(100%);
 } body {
     text-align: center;
     margin: auto;
@@ -39,10 +39,14 @@
     .section(#08f);
     border-radius: 0px;
     text-shadow: 0px 0px 5px;
+    border-bottom-width: 0px;
     &:hover, &:focus {
         text-shadow: 0px 0px 10px;
+    } &:nth-child(1) {
+        border-top-left-radius: 5px;
+    } &:nth-last-child(1) {
+        border-top-right-radius: 5px;
     }
-    border-radius: 2px 2px 0px 2px;
 } tr:nth-child(even) {
     background-color: #00ffff05;
 } td, tr {

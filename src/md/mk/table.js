@@ -57,12 +57,22 @@ function mk_table__(st) {
         row_num += 1;
         str += "<tr>";
         var col_num = -1;
+        var thresh = Math.floor(row.length / 2)
         for(var col of row) {
             col_num += 1;
+            attr = `style="text-align: ${table_aligns[col_num]}"`
+            var tag = "td";
             if(row_num == 0)
-                str += Elm("th", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
+                tag = "th";
+            if(row.length % 2 && col_num == thresh)
+                attr += ` class="tr-c"`;
+            else if(col_num < thresh)
+                attr += ` class="tr-l"`;
+            else if(col_num > thresh)
+                attr += ` class="tr-r"`;
             else
-                str += Elm("td", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
+                attr += ` class="tr-c"`;
+            str += `<${tag} ${attr}>${mark_page(col)}</${tag}>`;
         }
         str += "</tr>";
     }

@@ -9,6 +9,23 @@
 
 var line_regex__ = [];
 
+var extensions__ = {
+    "video": [
+        "mp4",
+        "m4v",
+        "mov",
+        "webm"
+    ],
+    "audio": [
+        "mp3",
+        "ogg",
+        "oga",
+        "spx",
+        "wav",
+        "m4a"
+    ]
+}
+
 function set_regex__() {
     line_regex__ = [
         [/\\([^uUNx])/gm, function(m, p) {return "\\u{" + p.charCodeAt(0).toString(16) + "}";}],
@@ -53,7 +70,15 @@ function set_regex__() {
             /\@\[(.+?)\]<(.+?)>\((.*)\)/gm,
             function(m, p1, p2, p3) {
                 var alt = esc(mark(p1).replace(/"/gm, "'"));
-                return `<img alt="${alt}" title="${alt}" width="${p3}" src="${esc(p2)}">`;
+                var thing = "img";
+                var src = p2.toLowerCase().trim();
+                for(var ext of extensions__["video"])
+                    if(src.endsWith(ext) || src.endsWith(ext + "/"))
+                        thing = "video";
+                for(var ext of extensions__["audio"])
+                    if(src.endsWith(ext) || src.endsWith(ext + "/"))
+                        thing = "audio";
+                return `<${thing} controls="true" alt="${alt}" title="${alt}" width="${p3}" src="${esc(p2)}">`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>\((.*?)\)/gm,
@@ -79,7 +104,15 @@ function set_regex__() {
             /\@\[(.+?)\]<(.+?)>/gm,
             function(m, p1, p2) {
                 var alt = esc(mark(p1).replace(/"/gm, "'"));
-                return `<img alt="${alt}" title="${alt}" src="${esc(p2)}">`;
+                var thing = "img";
+                var src = p2.toLowerCase().trim();
+                for(var ext of extensions__["video"])
+                    if(src.endsWith(ext) || src.endsWith(ext + "/"))
+                        thing = "video";
+                for(var ext of extensions__["audio"])
+                    if(src.endsWith(ext) || src.endsWith(ext + "/"))
+                        thing = "audio";
+                return `<${thing} controls="true" alt="${alt}" width="${p3}" src="${esc(p2)}">`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>/gm,

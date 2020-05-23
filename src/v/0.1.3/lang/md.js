@@ -18,7 +18,7 @@ var md_regex__ = [
     ]
 ];
 
-function mark_syntax_css__(st) {
+function mark_syntax_md__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
     for(var r of css_regex__) {

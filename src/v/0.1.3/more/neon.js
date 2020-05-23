@@ -227,7 +227,7 @@ try {
 } catch(err) {
     function getRules() {
         for(var ruleset of document.styleSheets)
-            if(ruleset.ownerNode.id == "priz_neon")
+            if(ruleset.ownerNode.id == "priz_neon_css")
                 return ruleset.cssRules;
     }
 }

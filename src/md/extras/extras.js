@@ -24,11 +24,7 @@ try {
 } catch(err) {
     function sub_styles(all = true) {
         console.groupCollapsed("Reformatting page");
-        if(all && find(">table")) {
-            console.log("Styling tables")
-            var styleTables = styleTables || undefined;
-            logFunc(styleTables);
-        } if(all && find(".accent")) {
+        if(all && find(".accent")) {
             console.log("Moving accents")
             var style_accents = style_accents || undefined;
             logFunc(style_accents);
