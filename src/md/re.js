@@ -112,7 +112,7 @@ function set_regex__() {
                 for(var ext of extensions__["audio"])
                     if(src.endsWith(ext) || src.endsWith(ext + "/"))
                         thing = "audio";
-                return `<${thing} controls="true" alt="${alt}" width="${p3}" src="${esc(p2)}">`;
+                return `<${thing} controls="true" alt="${alt}" title="${alt}" src="${esc(p2)}">`;
             }
         ], [
             /\+\[\[(.+?)\]\]\<(.+?)\>/gm,

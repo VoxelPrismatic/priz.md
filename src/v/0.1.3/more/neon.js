@@ -97,13 +97,13 @@ function cls_collopen_hover__(style, color) {
     group_ls1__(style, color);
 }
 
-function cls_line__(style, color) {
+function tag_line__(style, color) {
     style.borderColor = color;
     var linetmp = "0px 0px 5px " + color;
     style.boxShadow = linetmp + ", inset " + linetmp;
 }
 
-function cls_line_hover__(style, color) {
+function tag_line_hover__(style, color) {
     style.borderColor = color;
     var linetmp = "0px 0px 10px " + color;
     style.boxShadow = linetmp + ", inset " + linetmp;
@@ -204,8 +204,8 @@ var selectors__ = {
     ".collapser:hover, .collapser:focus": cls_collapser_hover__,
     ".collopen": cls_collopen__,
     ".collopen:hover, .collopen:focus": cls_collopen_hover__,
-    ".line": cls_line__,
-    ".line:hover, .line:focus": cls_line_hover__,
+    "line": tag_line__,
+    "line:hover, line:focus": tag_line_hover__,
     ".lnk:hover, .lnk:focus": cls_lnk_hover__,
     ".sel": cls_sel__,
     ".sel:hover, .sel:focus": cls_sel_hover__,
