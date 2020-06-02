@@ -161,6 +161,7 @@ function sel_cls_dropper_gt_tag_div__(style, color) {
 
 function tag_codeblock__(style, color, bg) {
     bg = bg.replace(/1/gm, "0").replace(/2/gm, "1");
+    console.log(bg);
     if(bg.length == 4)
         bg += "6";
     else
@@ -215,8 +216,7 @@ var selectors__ = {
     "#jumper": id_jumper__,
     "blockquote": tag_blockquote__,
     ".dropper > div": sel_cls_dropper_gt_tag_div__,
-    "codeblock": tag_codeblock__,
-    "codeline": tag_codeblock__,
+    "codeblock, codeline": tag_codeblock__,
     "textarea": tag_textarea__,
     ".neon": cls_neon__,
     ".neon:hover, .neon:focus": cls_neon_hover__
