@@ -132,11 +132,13 @@ function locate(thing, parent = find("list"), loc = "find_command") {
                 nothidden = nothidden || donthideme;
             } else {
                 var rawtext;
-                if(page.children.length) {
-                    rawtext = page.children.item(0).innerHTML;
-                    rawtext += page.children.item(1).innerHTML;
-                }
-                else
+                if(page.getAttribute("search-terms"))
+                    rawtext = page.getAttribute("search-terms");
+                else if(page.children.length) {
+                    rawtext = " ";
+                    for(var child of page.children)
+                        rawtext += child.innerHTML + " ";
+                } else
                     rawtext = page.innerHTML;
                 if(rawtext.search(re) != -1) {
                     nothidden = true

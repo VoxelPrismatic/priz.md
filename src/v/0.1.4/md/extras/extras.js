@@ -43,3 +43,29 @@ try {
         // Not needed for external sources
     }
 }
+
+function regex(st, id) {
+    st = st.trim();
+    find(id).style.color = "#ffffff";
+    if(st == "")
+        return 1;
+    if(st.endsWith("/") && st.startsWith("/")) {
+        try {
+            find(id).style.color = "#00ffff";
+            return RegExp(st.slice(1, -1), "gm");
+        } catch(err) {
+            find(id).style.color = "#ff0000";
+            return 1;
+        }
+    }
+    var re = "(";
+    for(var ch of st) {
+        var lc = ch.toLowerCase().charCodeAt(0).toString(16);
+        var uc = ch.toUpperCase().charCodeAt(0).toString(16);
+        lc = lc.padStart(4, "0");
+        uc = uc.padStart(4, "0");
+        re += `[\\u${lc}\\u${uc}\\u200b\\\\]`; // Escape chars
+    }
+    re += ")";
+    return RegExp(re, "gm");
+}

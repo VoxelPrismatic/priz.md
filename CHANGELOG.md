@@ -16,6 +16,10 @@ make any breaking changes anyway.
 `collapser(elem, false, "?command=nothing")` will add `?command=nothing` to the
 end of the base URL [without the params]
 
+\> Added search terms
+
+\> Added RegEx support for searching
+
 ---
 
 ## #] v0.1.3
