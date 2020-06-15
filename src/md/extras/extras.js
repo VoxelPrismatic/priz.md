@@ -22,17 +22,27 @@ function compSty(elem) {
 try {
     sub_styles();
 } catch(err) {
+    var sub_styles_timeout = false;
+
     function sub_styles(all = true) {
+        if(globalThis.sub_styles_timeout)
+            return;
+        globalThis.sub_styles_timeout = true;
         console.groupCollapsed("Reformatting page");
-        if(all && find(".accent")) {
-            console.log("Moving accents")
-            var style_accents = style_accents || undefined;
+        if(all && find("spacer")) {
+            console.log("Resizing spacer");
+            logFunc(updateSpacer);
+        } if(all && find(">table")) {
+            console.log("Styling tables");
+            logFunc(styleTables);
+        } if(all && find(".accent")) {
+            console.log("Moving accents");
             logFunc(style_accents);
         } if(find(".dict")) {
-            var resizeDicts = resizeDicts || undefined;
             logFunc(resizeDicts);
         }
         console.groupEnd("Reformatting page");
+        window.setTimeout(() => globalThis.sub_styles_timeout = false, 100);
     }
 }
 
