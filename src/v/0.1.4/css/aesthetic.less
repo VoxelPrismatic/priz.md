@@ -1,0 +1,174 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
+@import (reference) "./fn.less";
+@import (reference) "./media.less";
+
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0px 0px 5px;
+}
+
+@sel: a, h1, h2, h3, h4, h5, h6;
+each(@sel, {
+    @{value}:hover, @{value}:focus {
+        text-shadow: 0px 0px 10px;
+    }
+});
+
+.unhide {
+    color: #fff !important;
+}
+
+#logo {
+    position: relative;
+    top: 20px;
+    &:hover, &:focus {
+        filter: drop-shadow(0px 0px 5px #0ff);
+    }
+}
+
+#head {
+    position: relative;
+    top: -80px;
+    transform: rotate(-14deg);
+    text-shadow: 0px 0px 5px, 0px 0px 20px black;
+    &:hover, &:focus {
+        text-shadow: 0px 0px 10px, 0px 0px 40px black;
+    }
+    font-style: italic;
+}
+
+.lnk {
+    .border(#008888);
+    color: #00ffff;
+    display: block;
+    .align(left);
+    &:hover, &:focus {
+        .section(#00ff00);
+        text-shadow: 0px 0px 5px;
+    }
+    min-height: 3vh;
+} .sel {
+    .lnk();
+    .section(#00ffff);
+    text-shadow: 0px 0px 10px;
+    &:hover, &:focus {
+        .section(#ff0088);
+        text-shadow: 0px 0px 15px;
+    }
+}
+
+.collapser {
+    .section(#ccc8);
+    border-color: #ccc8;
+    color: #ccc;
+    display: block;
+    .align(left);
+    min-height: 3vh;
+    &:hover, &:focus {
+        text-shadow: 0px 0px 5px;
+        .section(#fff8);
+        color: #ffff;
+        border-color: #fff8;
+        background-color: #ffffff05;
+    }
+    &::before {
+        content: "[V]  ";
+        font-weight: bold;
+        .mono-font();
+    }
+} .collopen {
+    .collapser();
+    .section(#fff8);
+    color: #fff;
+    text-shadow: 0px 0px 10px;
+    &::before {
+        content: "[\039b]  "; // Lambda
+        font-weight: bold;
+        .mono-font();
+    }
+} .collhover {
+    background-color: #0ff1;
+    color: #aff;
+    border-color: #aff8;
+    text-shadow: 0px 0px 10px;
+}
+
+.tab {
+    text-align: center;
+    padding: 5px;
+    color: #aaa;
+    .border-colors(#0fff, #0000, #0000, #0000);
+    .border-radii(0px, 0px, 0px, 0px);
+    border-width: 2px;
+    margin: none;
+    text-shadow: 0px 0px 10px;
+    background-color: #0000;
+    &.tabbed {
+        background-color: #0ff4;
+        color: #0ff;
+        .border-colors(#0fff, #0fff, #0000, #0fff);
+        .border-radii(5px, 5px, 0px, 0px);
+        &:hover, &:focus {
+            text-shadow: 0px 0px 15px;
+            background-color: #f084;
+            color: #f08;
+            .border-colors(#f08f, #f08f, #0000, #f08f);
+            .border-radii(5px, 5px, 0px, 0px);
+        }
+    }
+    &:hover, &:focus {
+        text-shadow: 0px 0px 10px;
+        background-color: #0f04;
+        color: #0f0;
+        .border-colors(#0f0f, #0f0f, #0000, #0f0f);
+        .border-radii(5px, 5px, 0px, 0px);
+    }
+}
+
+
+.sect {
+    .border(#0ff);
+    .margin();
+    text-align: justify;
+    padding: 10px;
+} .btn {
+    .section(#08f);
+    .pad(2px);
+    &:hover, &:focus {
+        .section(#0ff);
+        .pad(2px);
+    }
+} .dropped {
+    border-left: 2px solid #8884;
+    margin-left: 2px;
+    padding-left: 4px;
+}
+
+dict {
+    display: inline-block;
+    width: 0px;
+    border: 2px solid #444f;
+    border-radius: 2px;
+    height: 0px !important;
+    position: relative;
+    top: 10px;
+    transition: none !important;
+    margin: 0px 5px;
+} .smol-dict {
+    margin: auto;
+}
+
+.tr-l {
+    border-right-color: #0000;
+    border-right-width: 0px;
+} .tr-r {
+    border-left-color: #0000;
+    border-left-width: 0px;
+}

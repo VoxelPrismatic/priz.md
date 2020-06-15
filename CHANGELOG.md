@@ -6,7 +6,15 @@ will be applied to *all* those releases.
 - No updates break anything unless explicitly stated. I will try my best to not
 make any breaking changes anyway.
 
-[v0.1.3](#-013) | [v0.1.2](#-v012) | [v0.1.1](#-v011) | [v0.1.0](#-v010)
+[v0.1.4](#-v014) | [v0.1.3](#-v013) | [v0.1.2](#-v012) | [v0.1.1](#-v011) | [v0.1.0](#-v010)
+
+---
+
+## #] v0.1.4
+
+\> The `collapser()` function now supports setting URL parameters, eg
+`collapser(elem, false, "?command=nothing")` will add `?command=nothing` to the
+end of the base URL [without the params]
 
 ---
 
