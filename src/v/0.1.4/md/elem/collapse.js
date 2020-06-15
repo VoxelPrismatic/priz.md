@@ -91,7 +91,7 @@ function collapser(elem, force = false, param = null) {
     }
     elem.className = name;
     if(param) {
-        window.history.replaceState(null, "/", document.URL.split("?")[0] + param);
+        window.history.replaceState(null, "/", param);
     }
 }
 
