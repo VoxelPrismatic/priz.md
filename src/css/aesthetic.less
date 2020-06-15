@@ -66,17 +66,14 @@ each(@sel, {
 
 .collapser {
     .section(#ccc8);
-    border-color: #ccc8;
     color: #ccc;
     display: block;
     .align(left);
     min-height: 3vh;
+    border-color: #ccc8;
     &:hover, &:focus {
         text-shadow: 0px 0px 5px;
-        .section(#fff8);
-        color: #ffff;
-        border-color: #fff8;
-        background-color: #ffffff05;
+        background-color: #0ff1;
     }
     &::before {
         content: "[V]  ";
@@ -93,11 +90,6 @@ each(@sel, {
         font-weight: bold;
         .mono-font();
     }
-} .collhover {
-    background-color: #0ff1;
-    color: #aff;
-    border-color: #aff8;
-    text-shadow: 0px 0px 10px;
 }
 
 .tab {

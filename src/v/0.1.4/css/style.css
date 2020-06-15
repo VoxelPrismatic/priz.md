@@ -514,32 +514,16 @@ h6:focus {
   border-bottom-left-radius: 0px;
   margin: 5px;
   padding: 5px;
-  border-color: #ccc8;
   color: #ccc;
   display: block;
   text-align: left;
   min-height: 3vh;
+  border-color: #ccc8;
 }
 .collapser:hover,
 .collapser:focus {
   text-shadow: 0px 0px 5px;
-  color: #fff8;
-  background-color: rgba(255, 255, 255, 0);
-  caret-color: rgba(255, 255, 255, 0.76666667);
-  border: 2px solid;
-  border-bottom-color: #0000;
-  border-right-color: #fff8;
-  border-left-color: #fff8;
-  border-top-color: #fff8;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  margin: 5px;
-  padding: 5px;
-  color: #ffff;
-  border-color: #fff8;
-  background-color: #ffffff05;
+  background-color: #0ff1;
 }
 .collapser::before {
   content: "[V]  ";
@@ -553,11 +537,11 @@ h6:focus {
   border-right-color: #ccc8;
   border-left-color: #ccc8;
   border-top-color: #ccc8;
-  border-color: #ccc8;
   color: #ccc;
   display: block;
   text-align: left;
   min-height: 3vh;
+  border-color: #ccc8;
   color: #fff8;
   background-color: rgba(255, 255, 255, 0);
   caret-color: rgba(255, 255, 255, 0.76666667);
@@ -578,23 +562,7 @@ h6:focus {
 .collopen:hover,
 .collopen:focus {
   text-shadow: 0px 0px 5px;
-  color: #fff8;
-  background-color: rgba(255, 255, 255, 0);
-  caret-color: rgba(255, 255, 255, 0.76666667);
-  border: 2px solid;
-  border-bottom-color: #0000;
-  border-right-color: #fff8;
-  border-left-color: #fff8;
-  border-top-color: #fff8;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  margin: 5px;
-  padding: 5px;
-  color: #ffff;
-  border-color: #fff8;
-  background-color: #ffffff05;
+  background-color: #0ff1;
 }
 .collopen::before {
   content: "[V]  ";
@@ -605,12 +573,6 @@ h6:focus {
   content: "[\039b]  ";
   font-weight: bold;
   font-family: "Ubuntu Mono", mono;
-}
-.collhover {
-  background-color: #0ff1;
-  color: #aff;
-  border-color: #aff8;
-  text-shadow: 0px 0px 10px;
 }
 .tab {
   text-align: center;
