@@ -126,12 +126,12 @@ function mark_page(st) {
 
         // Ordered list [Numbers]
         if(
-            line && line.replace(/^\d+[\]\)\.\-] .*$/gm, "") == "" ||
+            line && line.replace(/^\d+[\]\)\-] .*$/gm, "") == "" ||
             (line.startsWith("   ") && ol)
         ) {
             if(line.startsWith("   ") && mark_page(line.slice(3)) == line.slice(3) + "<br><br>")
                 line = "   | " + line.slice(3)
-            ol += line.replace(/(^\d+[\]\)\.\-]|  ) /gm, "") + "\n";
+            ol += line.replace(/(^\d+[\]\)\-]|  ) /gm, "") + "\n";
             continue;
         }
         if(ol) {
@@ -142,12 +142,12 @@ function mark_page(st) {
 
         // Ordered list [Letters]
         if(
-            line && line.replace(/^\w+[\]\)\.\-] .*$/gm, "") == "" ||
+            line && line.replace(/^\w+[\]\)\-] .*$/gm, "") == "" ||
             (line.startsWith("   ") && al)
         ) {
             if(line.startsWith("   ") && mark_page(line.slice(3)) == line.slice(3) + "<br><br>")
                 line = "   | " + line.slice(3)
-            al += line.replace(/(^\w+[\]\)\.\-]|  ) /gm, "") + "\n";
+            al += line.replace(/(^\w+[\]\)\-]|  ) /gm, "") + "\n";
             continue;
         }
         if(al) {
