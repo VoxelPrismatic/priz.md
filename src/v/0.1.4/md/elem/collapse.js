@@ -58,6 +58,9 @@ function colldesel(elem = find("list")) {
 var timeout = false;
 
 function collapser(elem, force = false, param = null) {
+    if(param) {
+        window.history.replaceState(null, "/", param);
+    }
     if(globalThis.timeout && !force)
         return;
     globalThis.timeout = true;
@@ -90,9 +93,6 @@ function collapser(elem, force = false, param = null) {
             child.style.display = "none";
     }
     elem.className = name;
-    if(param) {
-        window.history.replaceState(null, "/", param);
-    }
 }
 
 function collall(parent = find("list"), sub = false) {

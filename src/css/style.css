@@ -522,8 +522,8 @@ h6:focus {
 }
 .collapser:hover,
 .collapser:focus {
-  text-shadow: 0px 0px 5px;
-  background-color: #0ff1;
+  text-shadow: 0px 0px 10px;
+  background-color: #fff2;
 }
 .collapser::before {
   content: "[V]  ";
@@ -557,12 +557,13 @@ h6:focus {
   margin: 5px;
   padding: 5px;
   color: #fff;
+  border-color: #fff8;
   text-shadow: 0px 0px 10px;
 }
 .collopen:hover,
 .collopen:focus {
-  text-shadow: 0px 0px 5px;
-  background-color: #0ff1;
+  text-shadow: 0px 0px 10px;
+  background-color: #fff2;
 }
 .collopen::before {
   content: "[V]  ";
