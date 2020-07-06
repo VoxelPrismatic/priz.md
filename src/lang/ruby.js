@@ -69,11 +69,8 @@ var rb_regex__ = [
     ],
     ...std_escape__,
     [
-        /([\u200b ]*)function ([\$\w\d_]+)/gm,
-        `$1<span class="kw">function</span> <span class="fn">$2</span>`
-    ], [
-        /([\u200b ]*)([\$\w\d_]+)([\u200b ]*)\=\>/gm,
-        `$1<span class="fn">$2</span>$3<span class="kw">=></span>`
+        /([\u200b ]*)def ([\$\w\d_]+)/gm,
+        `$1<span class="kw">def</span> <span class="fn">$2</span>`
     ], [
         /^([\u200b ]*)class ([$\w\d_]+)/gm,
         function(m, a, b) {
@@ -83,9 +80,6 @@ var rb_regex__ = [
     ], [
         /([$\w\d_]+)([\(\[.])/gm,
         `<span class="fn">$1</span>$2`
-    ], [
-        /([\u200b ]*)([\$\w\d_]+)([\u200b ]*):/gm,
-        `$1<span class="lbl">$2</span>$3:`
     ],
     ...std_number__,
     [
@@ -112,10 +106,11 @@ var rb_regex__ = [
 ];
 
 function mark_syntax_ruby__(st) {
-    st = st.replace(/\n/gm, " \n");
+    st = "\n" + st.replace(/\n/gm, " \n"); // For some reason starting comment blocks don't work
     st = "\u200b" + st + "\n";
     for(var r of rb_regex__) {
         st = st.replace(r[0], r[1]);
     }
+    st = st.slice(1);
     return mark_syntax__(st, rb_kw__, rb_cls__, rb_ext__, rb_set__);
 }
