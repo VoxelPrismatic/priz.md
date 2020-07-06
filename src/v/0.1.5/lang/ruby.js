@@ -10,7 +10,7 @@
 var rb_cls__ = [
     "false", "nil", "self", "super", "true", "Integer", "Float", "TrueClass",
     "FalseClass", "String", "Fixnum", "Bignum", "Symbol", "Array", "Hash",
-    "nil?"
+    "nil\\?"
 ];
 
 var rb_ext__ = [
@@ -92,6 +92,11 @@ var rb_regex__ = [
         /=begin((.|\n)*\n)=end/gm,
         function(m, a) {
             return `<span class="comm">=begin${a.split('').join('\u200b')}=end</span>\n`;
+        }
+    ], [
+        /([^\u200b])\#(.*)\n/gm,
+        function(m, b, a) {
+            return `${b}<span class="comm">#${a.split('').join('\u200b')}</span>\n`;
         }
     ], [
         /^\#(.*)\n/gm,
