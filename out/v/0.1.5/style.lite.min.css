@@ -1,0 +1,21 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+codeblock,codeline{border:2px solid;border-bottom-color:#0000;border-right-color:#344;border-left-color:#344;border-top-color:#344;border-top-right-radius:5px;border-top-left-radius:5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;background-color:#222;margin:5px;padding:5px;color:#aaa;font-family:"Ubuntu Mono",mono;cursor:auto;white-space:pre-wrap;display:block;}
+codeblock *,codeline *{font-family:"Ubuntu Mono",mono;}
+codeline{margin:2px;padding:2px;font-size:smaller;display:inline-block;}
+a-l{display:block;text-align:left;}
+a-r{display:block;text-align:right;}
+a-c{display:block;text-align:center;}
+a-j{display:block;text-align:justified;}
+line{height:5px;border:2px solid #0ff;border-radius:5px;width:80%;margin:auto;box-shadow:0px 0px 5px #0ff,inset 0px 0px 5px #0ff;display:block;}
+line:hover,line:focus{box-shadow:0px 0px 10px #0ff,inset 0px 0px 10px #0ff;}
+accent{position:relative;}
+.emoji{height:18.75px;display:inline-block;position:relative;top:2px;}
+.unhide{color:#fff !important;}
+def{cursor:help;}

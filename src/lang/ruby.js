@@ -7,39 +7,26 @@
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
 
-var js_cls__ = [
-    "ArrayBuffer", "Array", "AsyncFunction", "AsyncIterator", "Intl.DateTimeFormat",
-    "Atomics", "BigInt64Array", "BigUint64Array", "BigInt", "Boolean", "DataView",
-    "Date", "Float32Array", "Float64Array", "Function", "Generator",
-    "GeneratorFunction", "Infinity", "Int16Array", "Int32Array", "Int8Array",
-    "Intl.DisplayNames", "Intl.ListFormat", "Intl.Locale", "Intl.NumberFormat",
-    "Intl.PluralRules", "Intl.RelativeTimeFormat", "Iterator", "JSON", "Map",
-    "Math", "NaN", "Number", "Object", "Promise", "Proxy", "RangeError", "Intl",
-    "ReferenceError", "Reflect", "RegExp", "Set", "SharedArrayBuffer", "Intl.Collator",
-    "String", "Symbol", "TypedArray", "Uint16Array", "Uint32Array", "Uint8Array",
-    "Uint8ClampedArray", "WeakMap", "WeakSet", "WebAssembly", "null", "undefined",
-    "this", "super", "void", "arguments", "window", "document", "console",
-    "true", "false", "Set", "char", "double", "byte", "float", "long"
+var rb_cls__ = [
+    "false", "nil", "self", "super", "true", "Integer", "Float", "TrueClass",
+    "FalseClass", "String", "Fixnum", "Bignum", "Symbol", "Array", "Hash"
 ];
 
-var js_ext__ = [
-    "import", "import.meta", "label", "from", "export", "block", "empty",
-    "require", "exports", "module"
+var rb_ext__ = [
+    "module", "require", "require_relative", "include"
 ];
 
-var js_set__ = [
-    "function", "function\\*", "var", "new", "let", "extends", "const", "private",
-    "protected", "public", "globalThis", "implements", "delete", "constructor",
-    "get", "set", "=>", "class", "native"
+var rb_set__ = [
+    "alias", "class", "def", "defined?", "undef"
 ];
 
-var js_kw__ = [
-    "async", "break", "continue", "debugger", "default", "do", "while", "for",
-    "of", "if", "else", "return", "throw", "try", "catch", "with", "in",
-    "instanceof", "typeof", "yield", "yield\\*", "await", "finally",
+var rb_kw__ = [
+    "and", "begin", "break", "case", "do", "else", "elsif", "end", "ensure",
+    "for", "if", "in", "next", "not", "or", "redo", "rescue", "retry", "return",
+    "then", "unless", "until", "when", "while", "yield", "puts", "each"
 ];
 
-function js_str_regex__(m, b, c) {
+function rb_str_regex__(m, b, c) {
     var st = "";
     if(b == "`") {
         var incode = false;
@@ -62,19 +49,19 @@ function js_str_regex__(m, b, c) {
     return `<span class="str">${b}${st}${b}</span>`;
 }
 
-var js_regex__ = [
+var rb_regex__ = [
     [
         /(")(.*?[^\\\n]|)"/gm,
-        js_str_regex__
+        rb_str_regex__
     ], [
         /(\/)([^*].+?[^\\*\n])\//gm,
-        js_str_regex__
+        rb_str_regex__
     ], [
         /(')(.*?[^\\\n]|)'/gm,
-        js_str_regex__
+        rb_str_regex__
     ], [
         /(\`)((.|\n)*[^\\\n]|)\`/gm,
-        js_str_regex__
+        rb_str_regex__
     ], [
         /\\u\{([A-Fa-f0-9\u200b]+)\}/gm,
         `<span class="op">\\u{$1}</span>`
@@ -89,7 +76,7 @@ var js_regex__ = [
     ], [
         /^([\u200b ]*)class ([$\w\d_]+)/gm,
         function(m, a, b) {
-            js_cls__.push(b);
+            rb_cls__.push(b);
             return `${a}<span class="kw">class</span> <span class="cls">${b}</span>`;
         }
     ], [
@@ -118,11 +105,11 @@ var js_regex__ = [
     ]
 ];
 
-function mark_syntax_js__(st) {
+function mark_syntax_ruby__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex__) {
+    for(var r of rb_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax__(st, js_kw__, js_cls__, js_ext__, js_set__);
+    return mark_syntax__(st, rb_kw__, rb_cls__, rb_ext__, rb_set__);
 }

@@ -7,39 +7,29 @@
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
 
-var js_cls__ = [
-    "ArrayBuffer", "Array", "AsyncFunction", "AsyncIterator", "Intl.DateTimeFormat",
-    "Atomics", "BigInt64Array", "BigUint64Array", "BigInt", "Boolean", "DataView",
-    "Date", "Float32Array", "Float64Array", "Function", "Generator",
-    "GeneratorFunction", "Infinity", "Int16Array", "Int32Array", "Int8Array",
-    "Intl.DisplayNames", "Intl.ListFormat", "Intl.Locale", "Intl.NumberFormat",
-    "Intl.PluralRules", "Intl.RelativeTimeFormat", "Iterator", "JSON", "Map",
-    "Math", "NaN", "Number", "Object", "Promise", "Proxy", "RangeError", "Intl",
-    "ReferenceError", "Reflect", "RegExp", "Set", "SharedArrayBuffer", "Intl.Collator",
-    "String", "Symbol", "TypedArray", "Uint16Array", "Uint32Array", "Uint8Array",
-    "Uint8ClampedArray", "WeakMap", "WeakSet", "WebAssembly", "null", "undefined",
-    "this", "super", "void", "arguments", "window", "document", "console",
-    "true", "false", "Set", "char", "double", "byte", "float", "long"
+var ts_cls__ = [
+    "boolean", "string", "number", "Array", "any", "Object", "void", "undefined",
+    "null", "never", "object", "console", "ReadonlyArray", "Date", "this", "Math",
+    "Event", "super", "Exclude", "Extract", "NonNullable", "ReturnType", "InstanceType",
+    "Symbol", "System", "true", "false",
 ];
 
-var js_ext__ = [
-    "import", "import.meta", "label", "from", "export", "block", "empty",
-    "require", "exports", "module"
+var ts_ext__ = [
+    "export", "import", "from", "require", "module",
 ];
 
-var js_set__ = [
-    "function", "function\\*", "var", "new", "let", "extends", "const", "private",
-    "protected", "public", "globalThis", "implements", "delete", "constructor",
-    "get", "set", "=>", "class", "native"
+var ts_set__ = [
+    "let", "enum", "function", "new", "declare", "var", "const", "class", "interface",
+    "readonly", "implements", "extends", "constructor", "public", "private", "protected",
+    "get", "set", "abstract", "=>", "type", "namespace",
 ];
 
-var js_kw__ = [
-    "async", "break", "continue", "debugger", "default", "do", "while", "for",
-    "of", "if", "else", "return", "throw", "try", "catch", "with", "in",
-    "instanceof", "typeof", "yield", "yield\\*", "await", "finally",
+var ts_kw__ = [
+    "throw", "while", "return", "for", "if", "catch", "try", "keyof", "typeof",
+    "is", "in", "instanceof", "switch", "case", "default", "of", "as",
 ];
 
-function js_str_regex__(m, b, c) {
+function ts_str_regex__(m, b, c) {
     var st = "";
     if(b == "`") {
         var incode = false;
@@ -62,19 +52,19 @@ function js_str_regex__(m, b, c) {
     return `<span class="str">${b}${st}${b}</span>`;
 }
 
-var js_regex__ = [
+var ts_regex__ = [
     [
         /(")(.*?[^\\\n]|)"/gm,
-        js_str_regex__
+        ts_str_regex__
     ], [
         /(\/)([^*].+?[^\\*\n])\//gm,
-        js_str_regex__
+        ts_str_regex__
     ], [
         /(')(.*?[^\\\n]|)'/gm,
-        js_str_regex__
+        ts_str_regex__
     ], [
         /(\`)((.|\n)*[^\\\n]|)\`/gm,
-        js_str_regex__
+        ts_str_regex__
     ], [
         /\\u\{([A-Fa-f0-9\u200b]+)\}/gm,
         `<span class="op">\\u{$1}</span>`
@@ -118,11 +108,11 @@ var js_regex__ = [
     ]
 ];
 
-function mark_syntax_js__(st) {
+function mark_syntax_ts__(st) {
     st = st.replace(/\n/gm, " \n");
     st = "\u200b" + st + "\n";
-    for(var r of js_regex__) {
+    for(var r of ts_regex__) {
         st = st.replace(r[0], r[1]);
     }
-    return mark_syntax__(st, js_kw__, js_cls__, js_ext__, js_set__);
+    return mark_syntax__(st, ts_kw__, ts_cls__, ts_ext__, ts_set__);
 }

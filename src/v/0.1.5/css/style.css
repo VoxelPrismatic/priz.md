@@ -1,0 +1,964 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
+
+
+.mono-font {
+  font-family: "Ubuntu Mono", mono;
+}
+
+* {
+  font-family: "Ubuntu";
+}
+div {
+  line-height: 1.5;
+}
+a {
+  color: #aff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a:hover,
+a:focus {
+  color: #cff;
+}
+textarea {
+  color: #233;
+  background-color: rgba(34, 51, 51, 0.26667);
+  caret-color: #919999;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #233;
+  border-left-color: #233;
+  border-top-color: #233;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  color: #fff;
+  margin: 5px 0px;
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+body {
+  text-align: center;
+  margin: auto;
+  color: #aaa;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #0ff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+th {
+  color: #08f;
+  background-color: rgba(0, 136, 255, 0.26667);
+  caret-color: #80c4ff;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #08f;
+  border-left-color: #08f;
+  border-top-color: #08f;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 0px;
+  text-shadow: 0px 0px 5px;
+  border-bottom-width: 0px;
+}
+th:hover,
+th:focus {
+  text-shadow: 0px 0px 10px;
+}
+th:nth-child(1) {
+  border-top-left-radius: 5px;
+}
+th:nth-last-child(1) {
+  border-top-right-radius: 5px;
+}
+tr:nth-child(even) {
+  background-color: #00ffff05;
+}
+td,
+tr {
+  margin: 5px;
+  padding: 5px;
+  border-width: 0px 2px;
+  border-bottom-color: #0000;
+  border-right-color: #0ff;
+  border-left-color: #0ff;
+  border-top-color: #0000;
+  border-style: solid;
+}
+table {
+  width: 100%;
+  border-spacing: 0px;
+}
+blockquote {
+  margin: 0px 5px -5px 5px;
+  padding: 5px;
+  border-left: #0ff 2px solid;
+}
+al {
+  display: block;
+  list-style-type: lower-alpha;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+ol,
+ul,
+al {
+  margin: 0px;
+  padding-top: 0px;
+}
+ul {
+  list-style-type: "> ";
+}
+ul > li::marker,
+ol > li::marker,
+al > li::marker {
+  font-family: "Ubuntu Mono", mono;
+  color: #8888;
+}
+spoil {
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #344;
+  border-left-color: #344;
+  border-top-color: #344;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  background-color: #233;
+  font-size: smaller;
+  margin: 2px;
+  padding: 2px;
+  color: #233;
+}
+spoil:hover,
+spoil:focus {
+  color: #fff;
+}
+codeblock,
+codeline {
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #344;
+  border-left-color: #344;
+  border-top-color: #344;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: #222;
+  margin: 5px;
+  padding: 5px;
+  color: #aaa;
+  font-family: "Ubuntu Mono", mono;
+  cursor: auto;
+  white-space: pre-wrap;
+  display: block;
+}
+codeblock *,
+codeline * {
+  font-family: "Ubuntu Mono", mono;
+}
+codeline {
+  margin: 2px;
+  padding: 2px;
+  font-size: smaller;
+  display: inline-block;
+}
+a-l {
+  display: block;
+  text-align: left;
+}
+a-r {
+  display: block;
+  text-align: right;
+}
+a-c {
+  display: block;
+  text-align: center;
+}
+a-j {
+  display: block;
+  text-align: justified;
+}
+f-l {
+  float: left;
+}
+f-r {
+  float: right;
+}
+line {
+  height: 5px;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  width: 80%;
+  margin: auto;
+  box-shadow: 0px 0px 5px #0ff, inset 0px 0px 5px #0ff;
+  display: block;
+}
+line:hover,
+line:focus {
+  box-shadow: 0px 0px 10px #0ff, inset 0px 0px 10px #0ff;
+}
+accent {
+  position: relative;
+}
+
+#footer {
+  font-size: x-small;
+}
+#logo,
+#head {
+  width: 100%;
+  text-align: center;
+  font-size: xxx-large;
+}
+#jumper {
+  color: #0ff;
+  background-color: rgba(0, 255, 255, 0.26667);
+  caret-color: #80ffff;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #0ff;
+  border-left-color: #0ff;
+  border-top-color: #0ff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  border-right-color: #0000;
+  border-top-right-radius: 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-family: "Ubuntu Mono", mono;
+  background-color: inherit;
+  box-shadow: 0px 0px 4px #0ff;
+  transition: text-shadow 1s;
+  margin: 0;
+  z-index: 100;
+}
+#jumper:hover,
+#jumper:focus {
+  text-shadow: 0px 0px 5px;
+}
+
+.list {
+  max-height: 30vh;
+  overflow-y: auto;
+  text-align: center !important;
+}
+.margin {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.sect,
+.tab {
+  width: 90vw;
+}
+.loading {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.invis {
+  display: none;
+}
+.bgcolor {
+  background-color: #112222;
+}
+.mono {
+  font-family: "Ubuntu Mono", mono;
+}
+.hidden-marker::marker {
+  color: #0000;
+}
+.flip-h {
+  transform: scaleX(-100%);
+  display: inline-block;
+}
+.flip-v {
+  transform: scaleY(-100%);
+  display: inline-block;
+}
+.flip-h.flip-v {
+  transform: scale(-100%, -100%);
+}
+.dropper-closed > div {
+  display: none;
+}
+.h-dropper {
+  font-weight: bold;
+  font-family: "Ubuntu Mono", mono;
+  float: right;
+  cursor: alias;
+}
+.h-dropper-closed {
+  font-weight: bold;
+  font-family: "Ubuntu Mono", mono;
+  float: right;
+}
+.neon {
+  border-radius: 5px;
+  border: 2px solid #0ff;
+  box-shadow: 0px 0px 5px 1px #0ff;
+}
+.neon:hover,
+.neon:focus {
+  box-shadow: 0px 0px 10px 1px #0ff;
+}
+.emoji {
+  height: 18.75px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: 0px 0px 5px;
+}
+a:hover,
+a:focus {
+  text-shadow: 0px 0px 10px;
+}
+h1:hover,
+h1:focus {
+  text-shadow: 0px 0px 10px;
+}
+h2:hover,
+h2:focus {
+  text-shadow: 0px 0px 10px;
+}
+h3:hover,
+h3:focus {
+  text-shadow: 0px 0px 10px;
+}
+h4:hover,
+h4:focus {
+  text-shadow: 0px 0px 10px;
+}
+h5:hover,
+h5:focus {
+  text-shadow: 0px 0px 10px;
+}
+h6:hover,
+h6:focus {
+  text-shadow: 0px 0px 10px;
+}
+.unhide {
+  color: #fff !important;
+}
+#logo {
+  position: relative;
+  top: 20px;
+}
+#logo:hover,
+#logo:focus {
+  filter: drop-shadow(0px 0px 5px #0ff);
+}
+#head {
+  position: relative;
+  top: -80px;
+  transform: rotate(-14deg);
+  text-shadow: 0px 0px 5px, 0px 0px 20px black;
+  font-style: italic;
+}
+#head:hover,
+#head:focus {
+  text-shadow: 0px 0px 10px, 0px 0px 40px black;
+}
+.lnk {
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #008888;
+  border-left-color: #008888;
+  border-top-color: #008888;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  color: #00ffff;
+  display: block;
+  text-align: left;
+  min-height: 3vh;
+}
+.lnk:hover,
+.lnk:focus {
+  color: #00ff00;
+  background-color: rgba(0, 255, 0, 0.26667);
+  caret-color: #80ff80;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #00ff00;
+  border-left-color: #00ff00;
+  border-top-color: #00ff00;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  text-shadow: 0px 0px 5px;
+}
+.sel {
+  border-right-color: #008888;
+  border-left-color: #008888;
+  border-top-color: #008888;
+  display: block;
+  text-align: left;
+  min-height: 3vh;
+  color: #00ffff;
+  background-color: rgba(0, 255, 255, 0.26667);
+  caret-color: #80ffff;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #00ffff;
+  border-left-color: #00ffff;
+  border-top-color: #00ffff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  text-shadow: 0px 0px 10px;
+}
+.sel:hover,
+.sel:focus {
+  color: #00ff00;
+  background-color: rgba(0, 255, 0, 0.26667);
+  caret-color: #80ff80;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #00ff00;
+  border-left-color: #00ff00;
+  border-top-color: #00ff00;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  text-shadow: 0px 0px 5px;
+}
+.sel:hover,
+.sel:focus {
+  color: #ff0088;
+  background-color: rgba(255, 0, 136, 0.26667);
+  caret-color: #ff80c4;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #ff0088;
+  border-left-color: #ff0088;
+  border-top-color: #ff0088;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  text-shadow: 0px 0px 15px;
+}
+.collapser {
+  color: #ccc8;
+  background-color: rgba(204, 204, 204, 0);
+  caret-color: rgba(241, 241, 241, 0.76666667);
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #ccc8;
+  border-left-color: #ccc8;
+  border-top-color: #ccc8;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  color: #ccc;
+  display: block;
+  text-align: left;
+  min-height: 3vh;
+  border-color: #ccc8;
+}
+.collapser:hover,
+.collapser:focus {
+  text-shadow: 0px 0px 10px;
+  background-color: #fff2;
+}
+.collapser::before {
+  content: "[V]  ";
+  font-weight: bold;
+  font-family: "Ubuntu Mono", mono;
+}
+.collopen {
+  color: #ccc8;
+  background-color: rgba(204, 204, 204, 0);
+  caret-color: rgba(241, 241, 241, 0.76666667);
+  border-right-color: #ccc8;
+  border-left-color: #ccc8;
+  border-top-color: #ccc8;
+  color: #ccc;
+  display: block;
+  text-align: left;
+  min-height: 3vh;
+  border-color: #ccc8;
+  color: #fff8;
+  background-color: rgba(255, 255, 255, 0);
+  caret-color: rgba(255, 255, 255, 0.76666667);
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #fff8;
+  border-left-color: #fff8;
+  border-top-color: #fff8;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  color: #fff;
+  border-color: #fff8;
+  text-shadow: 0px 0px 10px;
+}
+.collopen:hover,
+.collopen:focus {
+  text-shadow: 0px 0px 10px;
+  background-color: #fff2;
+}
+.collopen::before {
+  content: "[V]  ";
+  font-weight: bold;
+  font-family: "Ubuntu Mono", mono;
+}
+.collopen::before {
+  content: "[\039b]  ";
+  font-weight: bold;
+  font-family: "Ubuntu Mono", mono;
+}
+.tab {
+  text-align: center;
+  padding: 5px;
+  color: #aaa;
+  border-bottom-color: #0000;
+  border-right-color: #0000;
+  border-left-color: #0000;
+  border-top-color: #0fff;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-width: 2px;
+  margin: none;
+  text-shadow: 0px 0px 10px;
+  background-color: #0000;
+}
+.tab.tabbed {
+  background-color: #0ff4;
+  color: #0ff;
+  border-bottom-color: #0000;
+  border-right-color: #0fff;
+  border-left-color: #0fff;
+  border-top-color: #0fff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.tab.tabbed:hover,
+.tab.tabbed:focus {
+  text-shadow: 0px 0px 15px;
+  background-color: #f084;
+  color: #f08;
+  border-bottom-color: #0000;
+  border-right-color: #f08f;
+  border-left-color: #f08f;
+  border-top-color: #f08f;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.tab:hover,
+.tab:focus {
+  text-shadow: 0px 0px 10px;
+  background-color: #0f04;
+  color: #0f0;
+  border-bottom-color: #0000;
+  border-right-color: #0f0f;
+  border-left-color: #0f0f;
+  border-top-color: #0f0f;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.sect {
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #0ff;
+  border-left-color: #0ff;
+  border-top-color: #0ff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: justify;
+  padding: 10px;
+}
+.btn {
+  color: #08f;
+  background-color: rgba(0, 136, 255, 0.26667);
+  caret-color: #80c4ff;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #08f;
+  border-left-color: #08f;
+  border-top-color: #08f;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #0ff;
+  background-color: rgba(0, 255, 255, 0.26667);
+  caret-color: #80ffff;
+  border: 2px solid;
+  border-bottom-color: #0000;
+  border-right-color: #0ff;
+  border-left-color: #0ff;
+  border-top-color: #0ff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 2px;
+}
+.dropped {
+  border-left: 2px solid #8884;
+  margin-left: 2px;
+  padding-left: 4px;
+}
+dict {
+  display: inline-block;
+  width: 0px;
+  border: 2px solid #444f;
+  border-radius: 2px;
+  height: 0px !important;
+  position: relative;
+  top: 10px;
+  transition: none !important;
+  margin: 0px 5px;
+}
+.smol-dict {
+  margin: auto;
+}
+.tr-l {
+  border-right-color: #0000;
+  border-right-width: 0px;
+}
+.tr-r {
+  border-left-color: #0000;
+  border-left-width: 0px;
+}
+
+@media only screen and (min-width: 240px) {
+  .sect,
+  .tab {
+    width: 95vw;
+  }
+  img {
+    max-width: 95vw;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .sect,
+  .tab {
+    width: 90vw;
+  }
+  img {
+    max-width: 90vw;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .sect,
+  .tab {
+    width: 80vw;
+  }
+  img {
+    max-width: 80vw;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .sect,
+  .tab {
+    width: 70vw;
+  }
+  img {
+    max-width: 70vw;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .sect,
+  .tab {
+    width: 60vw;
+  }
+  img {
+    max-width: 60vw;
+  }
+}
+@media only screen and (min-width: 1080px) {
+  .sect,
+  .tab {
+    width: 50vw;
+  }
+  img {
+    max-width: 50vw;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .sect,
+  .tab {
+    width: 45vw;
+  }
+  img {
+    max-width: 45vw;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .sect,
+  .tab {
+    width: 40vw;
+  }
+  img {
+    max-width: 40vw;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .sect,
+  .tab {
+    width: 35vw;
+  }
+  img {
+    max-width: 35vw;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .sect,
+  .tab {
+    width: 30vw;
+  }
+  img {
+    max-width: 30vw;
+  }
+}
+
+
+*:focus,
+*:hover {
+  outline: none;
+}
+.focusing {
+  outline: currentcolor thin dotted;
+}
+nah {
+  cursor: auto;
+}
+#head {
+  cursor: default;
+}
+div {
+  cursor: default;
+}
+span {
+  cursor: default;
+}
+img {
+  cursor: default;
+}
+nah {
+  cursor: none;
+}
+nah {
+  cursor: context-menu;
+}
+def {
+  cursor: help;
+}
+a {
+  cursor: pointer;
+}
+h1 {
+  cursor: pointer;
+}
+h2 {
+  cursor: pointer;
+}
+h3 {
+  cursor: pointer;
+}
+h4 {
+  cursor: pointer;
+}
+h5 {
+  cursor: pointer;
+}
+h6 {
+  cursor: pointer;
+}
+spoil {
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+.collapser {
+  cursor: pointer;
+}
+.lnk {
+  cursor: pointer;
+}
+#jumper {
+  cursor: pointer;
+}
+nah {
+  cursor: progress;
+}
+nah {
+  cursor: wait;
+}
+nah {
+  cursor: cell;
+}
+nah {
+  cursor: crosshair;
+}
+nah {
+  cursor: text;
+}
+nah {
+  cursor: vertical-text;
+}
+nah {
+  cursor: alias;
+}
+nah {
+  cursor: copy;
+}
+nah {
+  cursor: no-drop;
+}
+nah {
+  cursor: not-allowed;
+}
+nah {
+  cursor: grab;
+}
+nah {
+  cursor: grabbing;
+}
+nah {
+  cursor: all-scroll;
+}
+nah {
+  cursor: col-resize;
+}
+nah {
+  cursor: row-resize;
+}
+nah {
+  cursor: n-resize;
+}
+nah {
+  cursor: s-resize;
+}
+nah {
+  cursor: e-resize;
+}
+nah {
+  cursor: w-resize;
+}
+nah {
+  cursor: ne-resize;
+}
+nah {
+  cursor: sw-resize;
+}
+nah {
+  cursor: se-resize;
+}
+nah {
+  cursor: nw-resize;
+}
+nah {
+  cursor: ew-resize;
+}
+nah {
+  cursor: ns-resize;
+}
+nah {
+  cursor: nesw-resize;
+}
+nah {
+  cursor: nwse-resize;
+}
+nah {
+  cursor: zoom-in;
+}
+nah {
+  cursor: zoom-out;
+}
