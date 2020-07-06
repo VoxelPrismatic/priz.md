@@ -9,7 +9,8 @@
 
 var rb_cls__ = [
     "false", "nil", "self", "super", "true", "Integer", "Float", "TrueClass",
-    "FalseClass", "String", "Fixnum", "Bignum", "Symbol", "Array", "Hash"
+    "FalseClass", "String", "Fixnum", "Bignum", "Symbol", "Array", "Hash",
+    "nil?"
 ];
 
 var rb_ext__ = [
@@ -93,9 +94,9 @@ var rb_regex__ = [
             return `<span class="comm">//${a.split('').join('\u200b')}</span>\n`;
         }
     ], [
-        /([^\u200b])\/\*((.|\n)*)\*\//gm,
-        function(m, b, a) {
-            return `${b}<span class="comm">/*${a.split('').join('\u200b')}*/</span>`;
+        /^\#(.*)\n/gm,
+        function(m, a) {
+            return `<span class="comm">#${a.split('').join('\u200b')}</span>\n`;
         }
     ],
     ...std_err__,
