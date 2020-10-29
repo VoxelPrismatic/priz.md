@@ -1,0 +1,25 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
+.fn {color:#ff8800;font-weight:bold;}
+.aio {color:#00ffff;font-style:italic;font-weight:bold;}
+.cls {color:#0088ff;font-style:italic;font-weight:bold;}
+.var {color:#00ff88;}
+.op {color:#ffff00;}
+.kw {color:#ff88ff;}
+.str {color:#00ffff;}
+.dec {color:#0088ff;}
+.comm {color:#777777;}
+.err {color:#ff0000;font-style:italic;font-weight:bold;}
+.comm * {color:#777777;}
+.str * {color:#00ffff;}
+.str .op {color:#ffff00;}
+.set {color:#ff0088;font-weight:bold;}
+.ext {color:#88ff00;font-weight:bold;}
+.lbl {color:#8888ff;font-weight:bold;}
