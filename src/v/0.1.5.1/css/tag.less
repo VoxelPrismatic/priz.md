@@ -1,0 +1,139 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
+@import (reference) "./fn.less";
+@import (reference) "./media.less";
+
+* {
+    font-family: "Ubuntu";
+} div {
+    line-height: 1.5;
+} a {
+    color: #aff;
+    text-decoration: none;
+    white-space: nowrap;
+    &:hover, &:focus {
+        color: #cff;
+    }
+} textarea {
+    .section(#233);
+    color: #fff;
+    margin: 5px 0px;
+    .force-width(100%);
+} body {
+    text-align: center;
+    margin: auto;
+    color: #aaa;
+} h1, h2, h3, h4, h5, h6 {
+    color: #0ff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+} th {
+    .section(#08f);
+    border-radius: 0px;
+    text-shadow: 0px 0px 5px;
+    border-bottom-width: 0px;
+    &:hover, &:focus {
+        text-shadow: 0px 0px 10px;
+    } &:nth-child(1) {
+        border-top-left-radius: 5px;
+    } &:nth-last-child(1) {
+        border-top-right-radius: 5px;
+    }
+} tr:nth-child(even) {
+    background-color: #00ffff05;
+} td, tr {
+    .pad(5px);
+    border-width: 0px 2px;
+    .border-colors(#0000, #0ff, #0000, #0ff);
+    border-style: solid;
+} table {
+    width: 100%;
+    border-spacing: 0px;
+} blockquote {
+    margin: 0px 5px -5px 5px;
+    padding: 5px;
+    border-left: #0ff 2px solid;
+} al {
+    // Copy OL but with lower-alpha as the style
+    display: block;
+    list-style-type: lower-alpha;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+} ol, ul, al {
+    margin: 0px;
+    padding-top: 0px;
+} ul {
+  list-style-type: "> ";
+} ul > li::marker, ol > li::marker, al > li::marker {
+  .mono-font();
+  color: #8888;
+} spoil {
+    .border(#344);
+    margin: 5px;
+    padding: 5px;
+    background-color: #233;
+    font-size: smaller;
+    margin: 2px;
+    padding: 2px;
+    color: #233;
+    &:hover, &:focus {
+        color: #fff;
+    }
+} codeblock, codeline {
+    .border(#344);
+    background-color: #222;
+    margin: 5px;
+    padding: 5px;
+    color: #aaa;
+    .mono-font();
+    cursor: auto;
+    white-space: pre-wrap;
+    display: block;
+} codeblock *, codeline * {
+    .mono-font();
+} codeline {
+    margin: 2px;
+    padding: 2px;
+    font-size: smaller;
+    display: inline-block;
+} a-l {
+    display: block;
+    text-align: left;
+} a-r {
+    display: block;
+    text-align: right;
+} a-c {
+    display: block;
+    text-align: center;
+} a-j {
+    display: block;
+    text-align: justified;
+} f-l {
+    float: left;
+} f-r {
+    float: right;
+} line {
+    height: 5px;
+    border: 2px solid #0ff;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0px 0px 5px #0ff, inset 0px 0px 5px #0ff;
+    &:hover, &:focus {
+        box-shadow: 0px 0px 10px #0ff, inset 0px 0px 10px #0ff;
+    }
+    display: block;
+} accent {
+    position: relative;
+}

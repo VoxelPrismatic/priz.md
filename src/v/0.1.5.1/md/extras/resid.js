@@ -7,25 +7,11 @@
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
 
-@sizes: {
-    480px: 90vw;
-    640px: 80vw;
-    720px: 70vw;
-    1000px: 60vw;
-    1080px: 50vw;
-    1280px: 45vw;
-    1366px: 40vw;
-    1600px: 35vw;
-    1920px: 30vw;
-}
+/* NOTICE --------------------------------------------------- *
+ * This file only exists to prevent breaking changes from     *
+ * breaking external code sources. This file [so far] only    *
+ * contains removed functions. As such, this file shouldn't   *
+ * be modified unless something is removed.                   *
+ * ---------------------------------------------------------- */
 
-each(@sizes, .(@v, @k, @i) {
-    @media only screen and (min-width: @k) {
-        .sect, .tab {
-            width: @v;
-        }
-        img {
-            max-width: @v;
-        }
-    }
-});
+var styleTables = (...resid) => {};

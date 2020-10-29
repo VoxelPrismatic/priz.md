@@ -1,0 +1,136 @@
+/* ------------- PRIZ.md - a markdown processor ------------- *
+ * [C] 2020 @VoxelPrismatic *not putting my name out there    *
+ *                                                            *
+ * This program is licensed under GPLv2. Feel free to modify  *
+ * it, but all projects modifying it must also remain         *
+ * opensource. No warranty is provided.                       *
+ * For more info go to https://tiny.cc/priz-md/               *
+ * ---------------------------------------------------------- */
+
+var bash_kw__ = [
+    "alias", "bg", "bind", "break", "builtin", "caller", "case", "esac",
+    "cd", "command", "compgen", "complete", "compout", "continue", "declare",
+    "dirs", "disown", "echo", "enable", "eval", "exec", "export", "false",
+    "fc", "fg", "for", "rof", "function", "getips", "hash", "history",
+    "if", "fi", "jobs", "kill", "let", "local", "logout", "mapfile", "popd",
+    "printf", "pushd", "pwd", "read", "readarray", "readonly", "return",
+    "select", "done", "set", "shift", "shopt", "souce", "suspend", "test",
+    "time", "times", "trap", "true", "type", "typeset", "ulimit", "unalias",
+    "unset", "umask", "until", "tceles", "litnu", "variables", "wait", "while",
+    "elihw"
+];
+
+var bash_ext__ = [
+    "gzip", "libffi", "nano", "autopoint", "envsubst", "gettextsize", "gettext",
+    "ISO3116", "ISO639", "msgattrib", "msgcat", "msgcmp", "msgcomm", "msgconv",
+    "msgen", "msgexec", "msgfilter", "msgfmt", "msggrep", "msginit", "msgmerge",
+    "msgunfmt", "msguniq", "ngettext", "xgettext", "dirmnger-client", "dirmnger",
+    "gpg-agent", "gpg2", "gpgsm", "aclocal-invocation", "arch", "b2sum", "base32",
+    "automake-invocation", "base64", "basename", "cat", "chcon", "chgrp", "chmod",
+    "chown", "chroot", "cksum", "smp", "comm", "cp", "csplit", "cut", "date", "dd",
+    "df", "diff", "diff3", "dir", "dircolors", "dirname", "du", "echo", "env",
+    "expand", "expr", "factor", "find", "fmt", "fold", "groups", "gunzip", "gzexe",
+    "head", "hostid", "hostname", "id", "install", "join", "kill", "link", "ln",
+    "locate", "ls", "logname", "md5sum", "mkdir", "mkfifo", "mknod", "mktemp", "mv",
+    "nice", "nl", "nohup", "npproc", "numfmt", "od", "paste", "patch", "pathchk",
+    "pr", "printenv", "ptx", "readlink", "realpath", "rm", "rmdir", "runcon",
+    "sdiff", "seq", "sha1sum", "sha2", "shar", "shred", "shuf", "sleep", "sort",
+    "split", "stat", "stdbuf", "stty", "sum", "sync", "tac", "tail", "tee", "test",
+    "time", "timeout", "touch", "tr", "truncate", "tsort", "tty", "unexpand",
+    "unlink", "unshar", "updatedb", "uptime", "users", "uudecode", "uuencode",
+    "vidr", "wc", "who", "whoami", "xargs", "yes", "zcat", "zdiff", "zforce",
+    "zgrep", "zmore", "grub-dev", "grub-install", "grub-mkconfig", "grub-mount",
+    "grub-mkpasswd-pbkd2", "grub-mk-relpath", "grub-mkrescue", "grub-probe",
+    "grub", "rluserman", "bc", "dc", "wget", "flex", "automake", "make", "sudo",
+    "su", "m4", "sed", "groff", "diffutils", "apt", "dnf", "apt-get", "aptitude",
+    "rpm", "snap", "flatpak", "yum", "pacman", "grep", "afconvert", "afinfo",
+    "afplay", "airport", "apropos", "asr", "awk", "bash", "bless", "bzip2",
+    "caffeinate", "cal", "calendar", "cancel", "chflags", "cmp", "cpio", "cron",
+    "crontab", "csrutil", "cupsfilter", "curl", "defaults", "dig", "diskutil",
+    "ditto", "dot_clean", "drutil", "dscacheutil", "dseditgroup", "dsenableroot",
+    "dscl", "exit", "execsnoop", "applescript", "fdisk", "file", "fsck", "fs_usage",
+    "ftp", "fuser", "getfileinfo", "getopt", "getopts", "goto",  "halt", "hdiutil",
+    "iconv", "ifconfig", "iostat", "ipconfig", "info", "iosnoop", "kextfind",
+    "kextstat", "kextunload", "kickstart", "killall", "l", "last", "launchctl",
+    "ll", "less", "lipo", "login", "look", "lp", "lpr", "lprm", "lpstat", "lsregister",
+    "lsbom", "lsof", "mdfind", "mdls", "mdutil", "mkfile", "more", "mount", "nc/netcat",
+    "net", "ntfs.util", "nvram", "onintr", "open", "opensnoop", "openssl", "osacompile",
+    "osascript", "passwd", "pbcopy", "pbpaste", "pgrep", "ping", "pkill", "installer",
+    "pmset", "ps", "quota", "rcp", "reportcrash", "rev", "rsync", "say", "screen",
+    "screencapture", "scselect", "scutil", "security", "serverinfo", "setfile",
+    "sharing",  "shasum", "shutdown", "sips", "softwareupdate", "source", "sqlite3",
+    "srm", "stop", "sw_vers", "sysctl", "system_profiler", "systemsetup", "tar",
+    "tccutil", "tcpdump", "textutil", "tmutil", "top", "tput", "traceroute",
+    "trimforce", "umount", "uname", "uniq", "units", "uuidgen", "vi", "w", "wall",
+    "whatis", "whereis", "which", "write", "xattr", "youtube-dl", "zip"
+];
+
+
+function bash_str_regex__(m, b, c) {
+    var st = "";
+    var incode = false;
+    for(var d of c.split('')) {
+        if(d == "${") {
+            st += "</span>${";
+            incode = true;
+        } else if(d == "}") {
+            st += '}<span class="str">';
+            incode = false;
+        } else if(incode) {
+            st += d;
+        } else {
+            st += d+"\u200b";
+        }
+    }
+    return `<span class="str">${b}${st}${b}</span>`;
+}
+
+var bash_regex__ = [
+    [
+        /(")(.*?[^\\\n]|)"/gm,
+        bash_str_regex__
+    ], [
+        /(')(.*?[^\\\n]|)'/gm,
+        bash_str_regex__
+    ],
+    ...std_escape__,
+    [
+        /^([\u200b ]*)function ([$\w\d_]+)/gm,
+        `$1<span class="kw">function</span> <span class="fn">$2</span>`
+    ], [
+        /([$\w\d_-]+)([\(\[.])/gm,
+        `<span class="fn">$1</span>$2`
+    ],
+    ...std_number__,
+    [
+        /([^\u200b])\#(.*)\n/gm,
+        function(m, b, a) {
+            var cls = "comm";
+            if(a.startsWith("!")) {
+                cls = "cls";
+            }
+            return `${b}<span class="${cls}"> #${a.split('').join('\u200b')}</span>\n`;
+        }
+    ], [
+        /^\#(.*)\n/gm,
+        function(m, a) {
+            var cls = "comm";
+            if(a.startsWith("!")) {
+                cls = "cls";
+            }
+            return `<span class="${cls}"> #${a.split('').join('\u200b')}</span>\n`;
+        }
+    ], [
+        /\u200b/gm,
+        ""
+    ]
+];
+
+function mark_syntax_bash__(st) {
+    st = st.replace(/\n/gm, " \n");
+    st = "\u200b" + st + "\n";
+    for(var r of bash_regex__) {
+        st = st.replace(r[0], r[1]);
+    }
+    return mark_syntax__(st, bash_kw__, [], bash_ext__, [], true, true, ["coproc"]);
+}

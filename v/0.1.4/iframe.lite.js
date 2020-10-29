@@ -7,25 +7,13 @@
  * For more info go to https://tiny.cc/priz-md/               *
  * ---------------------------------------------------------- */
 
-@sizes: {
-    480px: 90vw;
-    640px: 80vw;
-    720px: 70vw;
-    1000px: 60vw;
-    1080px: 50vw;
-    1280px: 45vw;
-    1366px: 40vw;
-    1600px: 35vw;
-    1920px: 30vw;
-}
+var base__ = "https://voxelprismatic.github.io/priz.md/v/0.1.4/";
+var iframe_md__ = true;
+var lite_css__ = true;
 
-each(@sizes, .(@v, @k, @i) {
-    @media only screen and (min-width: @k) {
-        .sect, .tab {
-            width: @v;
-        }
-        img {
-            max-width: @v;
-        }
-    }
-});
+var head__ = document.getElementById("priz_script");
+var script__ = document.createElement("script");
+script__.src = base__ + "priz_importer.js";
+script__.type = "text/javascript";
+script__.id = "priz_importer";
+head__.after(script__);
