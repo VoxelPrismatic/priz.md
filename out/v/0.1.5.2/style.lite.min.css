@@ -16,9 +16,9 @@ a-j{display:block;text-align:justified;}
 line{height:5px;border:2px solid #0ff;border-radius:5px;width:80%;margin:auto;box-shadow:0px 0px 5px #0ff,inset 0px 0px 5px #0ff;display:block;}
 line:hover,line:focus{box-shadow:0px 0px 10px #0ff,inset 0px 0px 10px #0ff;}
 accent{position:relative;}
-div.dict-good{display:flex;}
+div.dict-good{display:flex;transition:none !important;}
 div.dict-good dict{flex-grow:1;width:unset !important;}
-div.dict-smol{display:block;}
+div.dict-smol{display:block;transition:none !important;}
 div.dict-smol dict{width:100% !important;}
 .emoji{height:18.75px;display:inline-block;position:relative;top:2px;}
 .unhide{color:#fff !important;}

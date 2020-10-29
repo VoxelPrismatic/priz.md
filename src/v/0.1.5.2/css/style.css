@@ -233,6 +233,7 @@ accent {
 }
 div.dict-good {
   display: flex;
+  transition: none !important;
 }
 div.dict-good dict {
   flex-grow: 1;
@@ -240,6 +241,7 @@ div.dict-good dict {
 }
 div.dict-smol {
   display: block;
+  transition: none !important;
 }
 div.dict-smol dict {
   width: 100% !important;

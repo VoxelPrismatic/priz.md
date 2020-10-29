@@ -41,9 +41,9 @@ f-r{float:right;}
 line{height:5px;border:2px solid #0ff;border-radius:5px;width:80%;margin:auto;box-shadow:0px 0px 5px #0ff,inset 0px 0px 5px #0ff;display:block;}
 line:hover,line:focus{box-shadow:0px 0px 10px #0ff,inset 0px 0px 10px #0ff;}
 accent{position:relative;}
-div.dict-good{display:flex;}
+div.dict-good{display:flex;transition:none !important;}
 div.dict-good dict{flex-grow:1;width:unset !important;}
-div.dict-smol{display:block;}
+div.dict-smol{display:block;transition:none !important;}
 div.dict-smol dict{width:100% !important;}
 #footer{font-size:x-small;}
 #logo,#head{width:100%;text-align:center;font-size:xxx-large;}
