@@ -236,7 +236,7 @@ div.dict-good {
 }
 div.dict-good dict {
   flex-grow: 1;
-  top: 0px;
+  width: unset !important;
 }
 div.dict-smol {
   display: block;
