@@ -242,7 +242,7 @@ div.dict-smol {
   display: block;
 }
 div.dict-smol dict {
-  width: 100%;
+  width: 100% !important;
 }
 
 #footer {

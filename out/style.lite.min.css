@@ -19,7 +19,7 @@ accent{position:relative;}
 div.dict-good{display:flex;}
 div.dict-good dict{flex-grow:1;top:0px;}
 div.dict-smol{display:block;}
-div.dict-smol dict{width:100%;}
+div.dict-smol dict{width:100% !important;}
 .emoji{height:18.75px;display:inline-block;position:relative;top:2px;}
 .unhide{color:#fff !important;}
 def{cursor:help;}
